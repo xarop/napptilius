@@ -6,6 +6,7 @@ import { ThemeModeProvider } from './context/ThemeContext'
 import GlobalStyles from './styles/GlobalStyles'
 import theme from './styles/theme'
 import Header from './components/Header/Header'
+import Footer from './components/Footer/Footer'
 import HomePage from './pages/HomePage/HomePage'
 import DetailPage from './pages/DetailPage/DetailPage'
 import CartPage from './pages/CartPage/CartPage'
@@ -28,6 +29,7 @@ function App() {
             <Route path="/cart" element={<CartPage />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
+          <Footer />
         </PhoneProvider>
       </CartProvider>
     </ThemeProvider>

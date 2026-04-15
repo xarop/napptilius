@@ -1,0 +1,20 @@
+/* TEAM */
+
+Developer & Designer: xarop.com
+Site: https://xarop.com
+Location: Earth
+
+AI Developer: Claude (GitHub Copilot · Anthropic)
+Site: https://claude.ai
+Role: Pair programming, code review, implementation
+
+/* THANKS */
+
+Zara / Inditex — for the technical challenge spec.
+
+/* SITE */
+
+Last update: 2026/04/15
+Language: JavaScript (React)
+Doctype: HTML5
+IDE: Visual Studio Code

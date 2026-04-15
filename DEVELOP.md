@@ -127,3 +127,10 @@ npm run test:coverage # Coverage report
 3. Export from the component file.
 4. Import where needed.
 
+---
+
+## Credits
+
+- **Developer:** [xarop.com](https://xarop.com)
+- **AI Developer:** Claude (GitHub Copilot · Anthropic)
+

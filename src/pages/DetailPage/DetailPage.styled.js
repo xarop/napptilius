@@ -14,9 +14,9 @@ export const BackLink = styled.a`
   display: inline-flex;
   align-items: center;
   gap: var(--spacing-xs);
-  font-size: 0.8rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
+  font-size: var(--fs-body);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--ls-wide);
   text-transform: uppercase;
   color: var(--color-grey-500);
   cursor: pointer;
@@ -82,29 +82,29 @@ export const TitleBlock = styled.div`
 `
 
 export const Brand = styled.span`
-  font-size: 0.75rem;
-  font-weight: 300;
-  letter-spacing: 0.12em;
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-light);
+  letter-spacing: var(--ls-widest);
   text-transform: uppercase;
   color: var(--color-grey-500);
 `
 
 export const PhoneName = styled.h1`
-  font-size: 1.5rem;
-  font-weight: 300;
-  letter-spacing: 0.04em;
+  font-size: var(--fs-xl);
+  font-weight: var(--fw-light);
+  letter-spacing: var(--ls-sm);
   text-transform: uppercase;
-  line-height: 1.2;
+  line-height: var(--lh-tight);
 
   @media (min-width: 768px) {
-    font-size: 1.875rem;
+    font-size: var(--fs-2xl);
   }
 `
 
 export const PriceTag = styled.p`
-  font-size: 1.25rem;
-  font-weight: 300;
-  letter-spacing: 0.02em;
+  font-size: var(--fs-lg);
+  font-weight: var(--fw-light);
+  letter-spacing: var(--ls-tight);
   margin-top: 10px;
 `
 
@@ -114,18 +114,18 @@ export const Divider = styled.hr`
 `
 
 export const SectionLabel = styled.h2`
-  font-size: 0.7rem;
-  font-weight: 300;
-  letter-spacing: 0.1em;
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-light);
+  letter-spacing: var(--ls-wider);
   text-transform: uppercase;
   color: var(--color-grey-500);
   margin-bottom: 14px;
 `
 
 export const ColorName = styled.p`
-  font-size: 0.75rem;
-  font-weight: 300;
-  letter-spacing: 0.04em;
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-light);
+  letter-spacing: var(--ls-sm);
   color: var(--color-grey-500);
   margin-top: 10px;
 `
@@ -141,46 +141,58 @@ export const ColorSwatch = styled.button`
   height: 22px;
   border-radius: 0;
   background: ${({ $color }) => $color};
-  border: 1px solid ${({ $selected }) => ($selected ? 'var(--color-black)' : 'var(--color-grey-300)')};
-  transition: border-color var(--transition-fast);
+  border: 1px solid transparent;
+  outline: ${({ $selected }) =>
+    $selected ? '2px solid var(--color-black)' : '1px solid var(--color-grey-300)'};
+  outline-offset: ${({ $selected }) => ($selected ? '2px' : '0')};
+  transition: outline var(--transition-fast), outline-offset var(--transition-fast);
 
   &:hover {
-    border-color: var(--color-black);
+    outline: 2px solid var(--color-black);
+    outline-offset: 2px;
   }
 `
 
 export const StorageOptions = styled.div`
   display: flex;
-  gap: 6px;
+  gap: 0;
 `
 
 export const StorageButton = styled.button`
   flex: 1;
   padding: 12px 8px;
-  font-size: 0.8rem;
-  font-weight: 300;
-  letter-spacing: 0.05em;
+  font-size: var(--fs-body);
+  font-weight: var(--fw-light);
+  letter-spacing: var(--ls-md);
   text-transform: uppercase;
   text-align: center;
   border: ${({ $selected }) =>
     $selected ? '2px solid var(--color-black)' : '1px solid var(--color-grey-300)'};
   background: transparent;
   color: var(--color-black);
+  position: relative;
   transition: all var(--transition-fast);
+
+  & + & {
+    margin-left: -1px;
+  }
 
   &:hover {
     border-color: var(--color-black);
+    z-index: 1;
   }
+
+  ${({ $selected }) => $selected && 'z-index: 2;'}
 `
 
 export const AddToCartButton = styled.button`
   width: 100%;
   padding: 18px var(--spacing-lg);
-  background: #000000;
-  color: #ffffff;
-  font-size: 0.875rem;
-  font-weight: 300;
-  letter-spacing: 0.12em;
+  background: var(--color-black);
+  color: var(--color-white);
+  font-size: var(--fs-md);
+  font-weight: var(--fw-light);
+  letter-spacing: var(--ls-widest);
   text-transform: uppercase;
   transition: opacity var(--transition-fast);
 
@@ -195,50 +207,64 @@ export const AddToCartButton = styled.button`
 `
 
 export const SpecsTable = styled.section`
-  margin-top: var(--spacing-lg);
+  margin-top: var(--spacing-2xl);
+  padding-top: var(--spacing-xl);
 
   h2 {
-    font-size: 0.7rem;
-    font-weight: 700;
-    letter-spacing: 0.12em;
+    font-size: var(--fs-section-title);
+    font-weight: var(--fw-light);
+    letter-spacing: 0;
+    line-height: 1;
     text-transform: uppercase;
-    color: var(--color-grey-500);
-    margin-bottom: var(--spacing-md);
+    color: var(--color-black);
+    margin-bottom: var(--spacing-xl);
   }
 
   dl {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0;
-    border: 1px solid var(--color-grey-200);
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid var(--color-grey-200);
   }
 
   dt,
   dd {
-    padding: 10px 12px;
-    font-size: 0.825rem;
-    border-bottom: 1px solid var(--color-grey-200);
+    padding: 10px 0;
+    font-size: var(--fs-sm);
+    line-height: var(--lh-normal);
+  }
 
-    &:nth-last-child(-n + 2) {
-      border-bottom: none;
-    }
+  /* each row is a flex pair */
+  div {
+    display: flex;
+    gap: var(--spacing-xl);
+    border-bottom: 1px solid var(--color-grey-200);
+    align-items: baseline;
   }
 
   dt {
-    font-weight: 600;
-    background: var(--color-grey-100);
-    color: var(--color-grey-700);
+    flex: 0 0 160px;
+    font-size: var(--fs-xs);
+    font-weight: var(--fw-regular);
+    letter-spacing: var(--ls-widest);
+    text-transform: uppercase;
+    color: var(--color-grey-500);
+
+    @media (max-width: 480px) {
+      flex: 0 0 110px;
+    }
   }
 
   dd {
+    flex: 1;
+    font-weight: var(--fw-regular);
     color: var(--color-black);
   }
 `
 
 export const Feedback = styled.p`
-  font-size: 0.8rem;
+  font-size: var(--fs-body);
   color: var(--color-success);
-  font-weight: 600;
+  font-weight: var(--fw-semibold);
   text-align: center;
   min-height: 20px;
 `

@@ -3,6 +3,20 @@
   "private": true,
   "version": "1.0.0",
   "description": "Zara Web Challenge – Smartphones catalog with React, i18n and Context API",
+  "author": {
+    "name": "xarop.com",
+    "url": "https://xarop.com"
+  },
+  "contributors": [
+    {
+      "name": "xarop.com",
+      "url": "https://xarop.com"
+    },
+    {
+      "name": "Claude (GitHub Copilot / Anthropic)",
+      "url": "https://claude.ai"
+    }
+  ],
   "type": "module",
   "engines": {
     "node": ">=18"

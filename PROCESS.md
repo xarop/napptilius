@@ -187,3 +187,11 @@ The `document.documentElement.lang` attribute is updated whenever the user switc
 - **Animations** – page transitions with Framer Motion.
 - **GitHub Actions CI** – run lint + test on every PR.
 - **Deployment** – Vercel or Netlify with preview URLs per branch.
+
+---
+
+## Credits
+
+- **Developer:** [xarop.com](https://xarop.com)
+- **AI Developer:** Claude (GitHub Copilot · Anthropic)
+

@@ -12,7 +12,7 @@ export const SearchInput = styled.input`
   border-bottom: 1px solid var(--color-black);
   color: var(--color-black);
   padding: 10px 36px 10px 0;
-  font-size: 1rem;
+  font-size: var(--fs-base);
   font-family: inherit;
   transition: border-color var(--transition-fast);
 

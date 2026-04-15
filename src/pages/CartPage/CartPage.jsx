@@ -65,11 +65,15 @@ function CartPage() {
 
       <Footer>
         <ContinueButton to="/">{t('cart.continueShopping')}</ContinueButton>
-        <TotalSection>
-          <TotalLabel>{t('cart.total')}</TotalLabel>
-          <TotalPrice>{totalPrice} EUR</TotalPrice>
-          <PayButton aria-label={t('cart.pay')}>{t('cart.pay')}</PayButton>
-        </TotalSection>
+        {items.length > 0 && (
+          <>
+            <TotalSection>
+              <TotalLabel>{t('cart.total')}</TotalLabel>
+              <TotalPrice>{totalPrice} EUR</TotalPrice>
+            </TotalSection>
+            <PayButton aria-label={t('cart.pay')}>{t('cart.pay')}</PayButton>
+          </>
+        )}
       </Footer>
     </>
   )

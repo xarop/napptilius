@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 export const ListWrapper = styled.section`
   width: 100%;
-  max-width: 1280px;
+  max-width: var(--max-width-page);
   margin: 0 auto;
   padding: var(--spacing-lg) var(--spacing-md);
 
@@ -12,11 +12,15 @@ export const ListWrapper = styled.section`
 `
 
 export const SearchSection = styled.div`
+  position: sticky;
+  top: var(--header-height);
+  z-index: var(--z-dropdown);
+  background: var(--color-white);
   margin-bottom: var(--spacing-md);
 `
 
 export const ResultsInfo = styled.p`
-  font-size: 0.8rem;
+  font-size: var(--fs-body);
   color: var(--color-grey-500);
   margin-bottom: var(--spacing-lg);
   letter-spacing: 0.03em;
@@ -25,21 +29,19 @@ export const ResultsInfo = styled.p`
 
 export const Grid = styled.ul`
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1px;
-  background: var(--color-grey-200);
-  border: 1px solid var(--color-grey-200);
+  grid-template-columns: 1fr;
+  gap: 0;
 
   @media (min-width: 480px) {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
   }
 
   @media (min-width: 768px) {
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
   }
 
   @media (min-width: 1024px) {
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(4, 1fr);
   }
 
   li {
@@ -51,7 +53,7 @@ export const NoResults = styled.p`
   text-align: center;
   color: var(--color-grey-500);
   padding: var(--spacing-2xl) 0;
-  font-size: 0.95rem;
+  font-size: var(--fs-base);
 `
 
 export const LoadingWrapper = styled.div`
@@ -101,9 +103,9 @@ export const ErrorWrapper = styled.div`
     padding: 10px 20px;
     background: var(--color-black);
     color: var(--color-white);
-    font-size: 0.875rem;
-    font-weight: 600;
-    letter-spacing: 0.05em;
+    font-size: var(--fs-md);
+    font-weight: var(--fw-semibold);
+    letter-spacing: var(--ls-md);
     text-transform: uppercase;
     cursor: pointer;
     transition: opacity var(--transition-fast);

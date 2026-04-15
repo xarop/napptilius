@@ -158,3 +158,12 @@ Consulta [SETUP.md](./SETUP.md) per a la configuració detallada.
 ## License
 
 MIT
+
+---
+
+## Credits
+
+| Role | Name |
+|---|---|
+| Developer | [xarop.com](https://xarop.com) |
+| AI Developer | Claude (GitHub Copilot · Anthropic) |

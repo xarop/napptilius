@@ -6,12 +6,12 @@ export const SelectorWrapper = styled.div`
 
 export const LangButton = styled.button`
   color: var(--color-black);
-  font-size: 0.8rem;
-  font-weight: 600;
-  letter-spacing: 0.05em;
+  font-size: var(--fs-body);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--ls-md);
   text-transform: uppercase;
   padding: 4px 8px;
-  border-radius: 2px;
+  border-radius: var(--radius-sm);
   transition: opacity var(--transition-fast);
   border: 1px solid var(--color-grey-300);
 
@@ -27,10 +27,10 @@ export const Dropdown = styled.ul`
   background: var(--color-white);
   color: var(--color-black);
   border: 1px solid var(--color-grey-200);
-  border-radius: 2px;
+  border-radius: var(--radius-sm);
   min-width: 120px;
-  z-index: 200;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+  z-index: var(--z-dropdown);
+  box-shadow: var(--shadow-sm);
   overflow: hidden;
 `
 
@@ -39,7 +39,7 @@ export const LangOption = styled.li`
     width: 100%;
     text-align: left;
     padding: 10px 14px;
-    font-size: 0.875rem;
+    font-size: var(--fs-md);
     color: var(--color-black);
     font-weight: ${({ $active }) => ($active ? '700' : '400')};
     background: ${({ $active }) => ($active ? 'var(--color-grey-100)' : 'transparent')};

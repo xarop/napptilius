@@ -6,26 +6,38 @@ export const Card = styled(Link)`
   flex-direction: column;
   background: var(--color-white);
   border: 1px solid var(--color-grey-200);
-  transition: box-shadow var(--transition-base), transform var(--transition-base);
   text-decoration: none;
   color: inherit;
   overflow: hidden;
+  position: relative;
 
-  &:hover,
-  &:focus-visible {
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
-    transform: translateY(-2px);
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--color-black);
+    transform: translateY(100%);
+    transition: transform var(--transition-slow);
+    z-index: 0;
+  }
+
+  &:hover::after,
+  &:focus-visible::after {
+    transform: translateY(0);
   }
 `
 
 export const ImageWrapper = styled.div`
   aspect-ratio: 1;
-  background: var(--color-grey-100);
+  background: transparent;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
   padding: var(--spacing-md);
+  position: relative;
+  z-index: 1;
+  transition: background var(--transition-slow);
 
   img {
     width: 100%;
@@ -33,6 +45,8 @@ export const ImageWrapper = styled.div`
     object-fit: contain;
     transition: transform var(--transition-base);
   }
+
+
 
   ${Card}:hover & img {
     transform: scale(1.04);
@@ -44,15 +58,21 @@ export const CardBody = styled.div`
   display: flex;
   flex-direction: column;
   gap: 2px;
-  border-top: 1px solid var(--color-grey-200);
+  position: relative;
+  z-index: 1;
 `
 
 export const Brand = styled.span`
-  font-size: 0.65rem;
-  font-weight: 400;
-  letter-spacing: 0.06em;
+  font-size: var(--fs-2xs);
+  font-weight: var(--fw-regular);
+  letter-spacing: var(--ls-base);
   text-transform: uppercase;
   color: var(--color-grey-500);
+  transition: color var(--transition-slow);
+
+  ${Card}:hover & {
+    color: var(--color-grey-400);
+  }
 `
 
 export const NamePriceRow = styled.div`
@@ -63,21 +83,31 @@ export const NamePriceRow = styled.div`
 `
 
 export const Name = styled.span`
-  font-size: 0.75rem;
-  font-weight: 400;
-  letter-spacing: 0.04em;
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-regular);
+  letter-spacing: var(--ls-sm);
   text-transform: uppercase;
   color: var(--color-black);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   min-width: 0;
+  transition: color var(--transition-slow);
+
+  ${Card}:hover & {
+    color: var(--color-white);
+  }
 `
 
 export const Price = styled.span`
-  font-size: 0.75rem;
-  font-weight: 400;
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-regular);
   color: var(--color-black);
   white-space: nowrap;
   flex-shrink: 0;
+  transition: color var(--transition-slow);
+
+  ${Card}:hover & {
+    color: var(--color-white);
+  }
 `

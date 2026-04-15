@@ -3,7 +3,7 @@ import styled from 'styled-components'
 export const StyledHeader = styled.header`
   position: sticky;
   top: 0;
-  z-index: 100;
+  z-index: var(--z-header);
   background-color: ${({ $scrolled }) =>
     $scrolled ? 'rgba(255, 255, 255, 0.75)' : 'rgba(255, 255, 255, 0)'};
   backdrop-filter: ${({ $scrolled }) => ($scrolled ? 'blur(12px)' : 'none')};
@@ -31,7 +31,7 @@ export const StyledHeader = styled.header`
 
 export const HeaderInner = styled.div`
   width: 100%;
-  max-width: 1280px;
+  max-width: var(--max-width-page);
   margin: 0 auto;
   display: flex;
   align-items: center;
@@ -66,8 +66,8 @@ export const CartButton = styled.button`
   align-items: center;
   gap: var(--spacing-xs);
   color: var(--color-black);
-  font-size: 0.875rem;
-  font-weight: 500;
+  font-size: var(--fs-md);
+  font-weight: var(--fw-medium);
   padding: var(--spacing-xs) var(--spacing-sm);
   transition: opacity var(--transition-fast);
   position: relative;
@@ -87,7 +87,7 @@ export const CartButton = styled.button`
 `
 
 export const CartBadge = styled.span`
-  font-size: 0.75rem;
-  font-weight: 400;
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-regular);
   color: var(--color-black);
 `

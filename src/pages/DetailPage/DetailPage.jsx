@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { useCart } from '../../context/CartContext'
 import phonesApi from '../../services/api'
+import SimilarItems from '../../components/SimilarItems/SimilarItems'
 import {
   PageWrapper,
   BackLink,
@@ -22,7 +23,6 @@ import {
   StorageButton,
   AddToCartButton,
   SpecsTable,
-  Feedback,
 } from './DetailPage.styled'
 
 function BackIcon() {
@@ -51,7 +51,6 @@ function DetailPage() {
   const [error, setError] = useState(null)
   const [selectedColor, setSelectedColor] = useState(null)
   const [selectedStorage, setSelectedStorage] = useState(null)
-  const [feedback, setFeedback] = useState('')
 
   useEffect(() => {
     let cancelled = false
@@ -63,10 +62,6 @@ function DetailPage() {
       .then(data => {
         if (cancelled) return
         setPhone(data)
-        if (data.colorOptions?.length) setSelectedColor(data.colorOptions[0].hexCode)
-        if (data.storageOptions?.length) {
-          setSelectedStorage(data.storageOptions[0].capacity)
-        }
       })
       .catch(err => {
         if (!cancelled) setError(err.message)
@@ -96,8 +91,7 @@ function DetailPage() {
       selectedStorage,
     })
 
-    setFeedback(t('cart.added', { name: phone.name }))
-    setTimeout(() => setFeedback(''), 3000)
+    navigate('/cart')
   }
 
   const specs = phone?.specs
@@ -221,15 +215,11 @@ function DetailPage() {
 
           <AddToCartButton
             onClick={handleAddToCart}
-            disabled={!selectedColor && phone.colorOptions?.length > 0}
+            disabled={(!selectedStorage && phone.storageOptions?.length > 0) || (!selectedColor && phone.colorOptions?.length > 0)}
             aria-label={t('detail.addToCart')}
           >
             {t('detail.addToCart')}
           </AddToCartButton>
-
-          <Feedback aria-live="polite" aria-atomic="true">
-            {feedback}
-          </Feedback>
         </InfoSection>
       </ProductLayout>
 
@@ -238,14 +228,16 @@ function DetailPage() {
           <h2>{t('detail.specs')}</h2>
           <dl>
             {specs.map(s => (
-              <React.Fragment key={s.key}>
+              <div key={s.key}>
                 <dt>{s.label}</dt>
                 <dd>{s.value}</dd>
-              </React.Fragment>
+              </div>
             ))}
           </dl>
         </SpecsTable>
       )}
+
+      <SimilarItems currentId={phone.id} currentPrice={currentPrice} />
     </PageWrapper>
   )
 }

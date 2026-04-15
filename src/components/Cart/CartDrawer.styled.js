@@ -4,7 +4,7 @@ export const Overlay = styled.div`
   position: fixed;
   inset: 0;
   background: rgba(0, 0, 0, 0.4);
-  z-index: 300;
+  z-index: var(--z-overlay);
   opacity: ${({ $open }) => ($open ? 1 : 0)};
   visibility: ${({ $open }) => ($open ? 'visible' : 'hidden')};
   transition: opacity var(--transition-base), visibility var(--transition-base);
@@ -15,14 +15,14 @@ export const Drawer = styled.aside`
   top: 0;
   right: 0;
   height: 100%;
-  width: min(400px, 100vw);
+  width: min(var(--max-width-drawer), 100vw);
   background: var(--color-white);
-  z-index: 400;
+  z-index: var(--z-drawer);
   display: flex;
   flex-direction: column;
   transform: translateX(${({ $open }) => ($open ? '0' : '100%')});
   transition: transform var(--transition-base);
-  box-shadow: -4px 0 24px rgba(0, 0, 0, 0.12);
+  box-shadow: var(--shadow-drawer);
 `
 
 export const DrawerHeader = styled.div`
@@ -33,9 +33,9 @@ export const DrawerHeader = styled.div`
   border-bottom: 1px solid var(--color-grey-200);
 
   h2 {
-    font-size: 1rem;
-    font-weight: 700;
-    letter-spacing: 0.1em;
+    font-size: var(--fs-base);
+    font-weight: var(--fw-bold);
+    letter-spacing: var(--ls-wider);
     text-transform: uppercase;
   }
 `
@@ -69,7 +69,7 @@ export const EmptyCart = styled.p`
   text-align: center;
   color: var(--color-grey-400);
   padding: var(--spacing-2xl) 0;
-  font-size: 0.95rem;
+  font-size: var(--fs-base);
 `
 
 export const CartItem = styled.article`
@@ -105,8 +105,8 @@ export const ItemInfo = styled.div`
   min-width: 0;
 
   strong {
-    font-size: 0.875rem;
-    font-weight: 600;
+    font-size: var(--fs-md);
+    font-weight: var(--fw-semibold);
     display: block;
     white-space: nowrap;
     overflow: hidden;
@@ -114,25 +114,25 @@ export const ItemInfo = styled.div`
   }
 
   span {
-    font-size: 0.8rem;
+    font-size: var(--fs-body);
     color: var(--color-grey-500);
     display: block;
     margin-top: 2px;
   }
 
   p {
-    font-size: 0.875rem;
-    font-weight: 700;
+    font-size: var(--fs-md);
+    font-weight: var(--fw-bold);
     margin-top: var(--spacing-xs);
   }
 `
 
 export const RemoveButton = styled.button`
   color: var(--color-grey-400);
-  font-size: 0.75rem;
+  font-size: var(--fs-sm);
   text-decoration: underline;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: var(--ls-md);
   align-self: flex-start;
   margin-top: auto;
   transition: color var(--transition-fast);
@@ -150,8 +150,8 @@ export const DrawerFooter = styled.div`
 export const TotalRow = styled.div`
   display: flex;
   justify-content: space-between;
-  font-weight: 700;
-  font-size: 1rem;
-  letter-spacing: 0.05em;
+  font-weight: var(--fw-bold);
+  font-size: var(--fs-base);
+  letter-spacing: var(--ls-md);
   text-transform: uppercase;
 `
