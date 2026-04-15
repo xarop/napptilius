@@ -7,8 +7,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Smartphone catalog – Zara Web Challenge" />
   <meta name="theme-color" content="#000000" />
-  <link rel="author" href="/humans.txt" />
+  <link rel="author" href="/napptilius/humans.txt" />
   <title>Mobile Store – Smartphones</title>
+  <script>
+    // Restore path from 404.html redirect
+    ;(function () {
+      var p = new URLSearchParams(window.location.search).get('p')
+      if (p) {
+        var q = new URLSearchParams(window.location.search).get('q')
+        window.history.replaceState(
+          null,
+          null,
+          '/' + decodeURIComponent(p) + (q ? '?' + q : '') + window.location.hash
+        )
+      }
+    })()
+  </script>
 </head>
 
 <body>
