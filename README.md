@@ -1,157 +1,102 @@
-# 📱 Napptilius – Smartphone Catalog
+# Napptilius – Smartphone Catalog
 
 > Zara Web Challenge · Frontend Technical Test
 
 A responsive, accessible, multilingual smartphone catalog built with React, Styled Components and React Context API.
 
----
-
-## 🌐 Languages / Idiomas / Idiomes
-
-- [English](#english)
-- [Español](#español)
-- [Català](#català)
+🔗 **Live demo:** [xarop.github.io/napptilius](https://xarop.github.io/napptilius/)
 
 ---
 
-## English
-
-### Overview
+## Overview
 
 Single-page application that fetches a list of smartphones from a REST API, allows users to search by brand or name, view detailed specs, select color and storage options, and add items to a shopping cart.
 
-### Features
+## Features
 
-- 📋 **Phone list** with real-time search filter
-- 🔍 **Detail page** with specs, color & storage selectors
-- 🛒 **Cart drawer** with item management
+- 📋 **Phone list** with real-time search filter and sticky search bar
+- 🔍 **Detail page** with specs table, color & storage selectors, similar items strip
+- 🛒 **Cart page** with item management and responsive footer
+- 🌓 **Dark mode** toggle
 - 🌍 **Multilingual** – English / Spanish / Catalan
 - ♿ **Accessible** – ARIA roles, skip navigation, keyboard support
-- 📱 **Responsive** – mobile-first grid layout
+- 📱 **Responsive** – mobile-first layout
 - 🧪 **Tested** – Vitest + React Testing Library (19 tests)
 - 🔧 **Linted** – ESLint + Prettier
+- 🚀 **Deployed** – GitHub Pages via GitHub Actions
 
-### Tech Stack
+## Tech Stack
 
 | Layer | Technology |
 |---|---|
 | Framework | React 19 |
-| Build tool | Vite 8 |
+| Build tool | Vite 6 |
 | Routing | React Router v7 |
 | State | React Context API + useReducer |
 | Styling | Styled Components v6 + CSS Variables |
 | i18n | i18next + react-i18next |
 | Testing | Vitest + Testing Library |
 | Linting | ESLint 9 + Prettier 3 |
+| Runner | Bun |
 | Node | ≥ 18 |
 
-### API
+## API
 
-Base URL: `https://itx-frontend-test.onrender.com/api`
+Base URL: `https://prueba-tecnica-api-tienda-moviles.onrender.com`
 
 | Endpoint | Description |
 |---|---|
-| `GET /phones` | List of all phones (cached 1 h) |
-| `GET /phones/:id` | Phone detail |
-| `GET /images/:filename` | Phone images |
+| `GET /products` | List of all phones (cached 1 h) |
+| `GET /products/:id` | Phone detail |
 
-Authentication via `x-api-key` header (optional – set `VITE_API_KEY` in `.env`).
+Authentication via `x-api-key` header – set `VITE_API_KEY` in `.env`.
 
-### Quick Start
+## Quick Start
 
 ```bash
-npm install
-npm run dev        # http://localhost:5173
+bun install
+bun run dev        # http://localhost:5173
 ```
 
 See [SETUP.md](./SETUP.md) for detailed setup and [DEVELOP.md](./DEVELOP.md) for contributing guidelines.
 
-### Scripts
+## Scripts
 
 ```bash
-npm run dev          # Start dev server
-npm run build        # Production build
-npm run preview      # Preview production build
-npm run lint         # Run ESLint
-npm run format       # Format with Prettier
-npm test             # Run all tests
-npm run test:coverage # Run tests with coverage
+bun run dev          # Start dev server
+bun run build        # Production build
+bun run preview      # Preview production build
+bun run lint         # Run ESLint
+bun run format       # Format with Prettier
+bun test             # Run all tests
+bun run test:coverage # Run tests with coverage
 ```
 
-### Project Structure
+## Project Structure
 
 ```
 src/
-├── components/       # Reusable UI components
+├── components/
+│   ├── Breadcrumb/
+│   ├── Cart/           # CartDrawer
+│   ├── Footer/
 │   ├── Header/
-│   ├── SearchBar/
+│   ├── LanguageSelector/
+│   ├── NotFound/
 │   ├── PhoneCard/
 │   ├── PhoneList/
-│   ├── Cart/
-│   ├── LanguageSelector/
-│   └── NotFound/
-├── context/          # React Context (Cart, Phones)
-├── i18n/             # Translations (es, ca, en)
-├── pages/            # Route-level pages
-│   ├── HomePage/
-│   └── DetailPage/
-├── services/         # API layer with cache
-└── styles/           # GlobalStyles, theme
+│   ├── SearchBar/
+│   ├── SimilarItems/
+│   └── ThemeToggle/
+├── context/            # CartContext, PhoneContext, ThemeContext
+├── i18n/               # Translations (es, ca, en)
+├── pages/
+│   ├── CartPage/
+│   ├── DetailPage/
+│   └── HomePage/
+├── services/           # API layer with in-memory cache
+└── styles/             # GlobalStyles (CSS variables), theme
 ```
-
----
-
-## Español
-
-### Descripción
-
-Aplicación de una sola página que consume una API REST de smartphones. Permite buscar por marca o nombre, ver especificaciones detalladas, seleccionar color y almacenamiento, y añadir artículos al carrito.
-
-### Características
-
-- 📋 **Lista de teléfonos** con filtro de búsqueda en tiempo real
-- 🔍 **Página de detalle** con specs, selector de color y almacenamiento
-- 🛒 **Carrito lateral** con gestión de artículos
-- 🌍 **Multilingüe** – Inglés / Español / Catalán
-- ♿ **Accesible** – Roles ARIA, skip nav, soporte de teclado
-- 📱 **Responsive** – Layout grid mobile-first
-- 🧪 **Testado** – Vitest + React Testing Library
-
-### Inicio Rápido
-
-```bash
-npm install
-npm run dev   # http://localhost:5173
-```
-
-Consulta [SETUP.md](./SETUP.md) para la configuración detallada.
-
----
-
-## Català
-
-### Descripció
-
-Aplicació d'una sola pàgina que consumeix una API REST d'smartphones. Permet cercar per marca o nom, veure especificacions detallades, seleccionar color i emmagatzematge, i afegir articles a la cistella.
-
-### Característiques
-
-- 📋 **Llista de telèfons** amb filtre de cerca en temps real
-- 🔍 **Pàgina de detall** amb specs, selector de color i emmagatzematge
-- 🛒 **Cistella lateral** amb gestió d'articles
-- 🌍 **Multilingüe** – Anglès / Castellà / Català
-- ♿ **Accessible** – Rols ARIA, skip nav, suport de teclat
-- 📱 **Responsive** – Layout grid mobile-first
-- 🧪 **Testejat** – Vitest + React Testing Library
-
-### Inici Ràpid
-
-```bash
-npm install
-npm run dev   # http://localhost:5173
-```
-
-Consulta [SETUP.md](./SETUP.md) per a la configuració detallada.
 
 ---
 
