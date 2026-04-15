@@ -23,9 +23,9 @@ export const StyledHeader = styled.header`
 
   [data-theme='dark'] & {
     background-color: ${({ $scrolled }) =>
-      $scrolled ? 'rgba(10, 10, 10, 0.75)' : 'rgba(10, 10, 10, 0)'};
+    $scrolled ? 'rgba(10, 10, 10, 0.75)' : 'rgba(10, 10, 10, 0)'};
     border-bottom-color: ${({ $scrolled }) =>
-      $scrolled ? 'rgba(255,255,255,0.08)' : 'transparent'};
+    $scrolled ? 'rgba(255,255,255,0.08)' : 'transparent'};
   }
 `
 
