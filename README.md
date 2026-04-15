@@ -68,7 +68,7 @@ bun run build        # Production build
 bun run preview      # Preview production build
 bun run lint         # Run ESLint
 bun run format       # Format with Prettier
-bun test             # Run all tests
+bun run test         # Run all tests (Vitest)
 bun run test:coverage # Run tests with coverage
 ```
 
