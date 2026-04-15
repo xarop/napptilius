@@ -14,7 +14,7 @@ export const ListWrapper = styled.section`
 export const SearchSection = styled.div`
   position: sticky;
   top: var(--header-height);
-  z-index: var(--z-dropdown);
+  z-index: calc(var(--z-header) - 1);
   background: var(--color-white);
   margin-bottom: var(--spacing-md);
 `
