@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { useCart } from '../../context/CartContext'
@@ -9,6 +9,7 @@ import {
   ProductLayout,
   ImageSection,
   InfoSection,
+  TitleBlock,
   Brand,
   PhoneName,
   PriceTag,
@@ -16,14 +17,13 @@ import {
   SectionLabel,
   ColorOptions,
   ColorSwatch,
+  ColorName,
   StorageOptions,
   StorageButton,
   AddToCartButton,
   SpecsTable,
   Feedback,
 } from './DetailPage.styled'
-
-const IMG_BASE = 'https://itx-frontend-test.onrender.com/api/images'
 
 function BackIcon() {
   return (
@@ -83,13 +83,14 @@ function DetailPage() {
   function handleAddToCart() {
     if (!phone) return
     const storageOption = phone.storageOptions?.find(s => s.capacity === selectedStorage)
-    const price = storageOption?.price ?? phone.price
+    const price = storageOption?.price ?? phone.basePrice
+    const colorOption = phone.colorOptions?.find(c => c.hexCode === selectedColor)
 
     addItem({
       id: phone.id,
       name: phone.name,
       brand: phone.brand,
-      imageFileName: phone.imageFileName,
+      imageUrl: colorOption?.imageUrl ?? phone.colorOptions?.[0]?.imageUrl,
       price,
       selectedColor,
       selectedStorage,
@@ -136,7 +137,11 @@ function DetailPage() {
   }
 
   const currentPrice =
-    phone.storageOptions?.find(s => s.capacity === selectedStorage)?.price ?? phone.price
+    phone.storageOptions?.find(s => s.capacity === selectedStorage)?.price ?? phone.basePrice
+
+  const currentImageUrl =
+    phone.colorOptions?.find(c => c.hexCode === selectedColor)?.imageUrl ??
+    phone.colorOptions?.[0]?.imageUrl
 
   return (
     <PageWrapper id="main-content">
@@ -154,7 +159,7 @@ function DetailPage() {
       <ProductLayout>
         <ImageSection>
           <img
-            src={`${IMG_BASE}/${phone.imageFileName}`}
+            src={currentImageUrl}
             alt={t('accessibility.phoneImage', { name: phone.name })}
             onError={e => {
               e.target.style.display = 'none'
@@ -163,36 +168,17 @@ function DetailPage() {
         </ImageSection>
 
         <InfoSection>
-          <div>
+          <TitleBlock>
             <Brand>{phone.brand}</Brand>
             <PhoneName>{phone.name}</PhoneName>
             <PriceTag>{currentPrice} EUR</PriceTag>
-          </div>
+          </TitleBlock>
 
           <Divider />
 
-          {phone.colorOptions?.length > 0 && (
-            <div>
-              <SectionLabel>{t('detail.color')}</SectionLabel>
-              <ColorOptions role="group" aria-label={t('detail.color')}>
-                {phone.colorOptions.map(c => (
-                  <ColorSwatch
-                    key={c.hexCode}
-                    $color={c.hexCode}
-                    $selected={selectedColor === c.hexCode}
-                    onClick={() => setSelectedColor(c.hexCode)}
-                    aria-label={t('accessibility.colorOption', { name: c.name })}
-                    aria-pressed={selectedColor === c.hexCode}
-                    title={c.name}
-                  />
-                ))}
-              </ColorOptions>
-            </div>
-          )}
-
           {phone.storageOptions?.length > 0 && (
             <div>
-              <SectionLabel>{t('detail.storage')}</SectionLabel>
+              <SectionLabel>{t('detail.storageQuestion')}</SectionLabel>
               <StorageOptions role="group" aria-label={t('detail.storage')}>
                 {phone.storageOptions.map(s => (
                   <StorageButton
@@ -206,6 +192,30 @@ function DetailPage() {
                   </StorageButton>
                 ))}
               </StorageOptions>
+            </div>
+          )}
+
+          {phone.colorOptions?.length > 0 && (
+            <div>
+              <SectionLabel>{t('detail.colorQuestion')}</SectionLabel>
+              <ColorOptions role="group" aria-label={t('detail.color')}>
+                {phone.colorOptions.map(c => (
+                  <ColorSwatch
+                    key={c.hexCode}
+                    $color={c.hexCode}
+                    $selected={selectedColor === c.hexCode}
+                    onClick={() => setSelectedColor(c.hexCode)}
+                    aria-label={t('accessibility.colorOption', { name: c.name })}
+                    aria-pressed={selectedColor === c.hexCode}
+                    title={c.name}
+                  />
+                ))}
+              </ColorOptions>
+              {selectedColor && (
+                <ColorName>
+                  {phone.colorOptions.find(c => c.hexCode === selectedColor)?.name}
+                </ColorName>
+              )}
             </div>
           )}
 
@@ -228,10 +238,10 @@ function DetailPage() {
           <h2>{t('detail.specs')}</h2>
           <dl>
             {specs.map(s => (
-              <>
-                <dt key={`dt-${s.key}`}>{s.label}</dt>
-                <dd key={`dd-${s.key}`}>{s.value}</dd>
-              </>
+              <React.Fragment key={s.key}>
+                <dt>{s.label}</dt>
+                <dd>{s.value}</dd>
+              </React.Fragment>
             ))}
           </dl>
         </SpecsTable>

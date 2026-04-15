@@ -17,8 +17,6 @@ import {
   TotalRow,
 } from './CartDrawer.styled'
 
-const IMG_BASE = 'https://itx-frontend-test.onrender.com/api/images'
-
 function CloseIcon() {
   return (
     <svg
@@ -92,7 +90,7 @@ function CartDrawer({ isOpen, onClose }) {
               <CartItem key={`${item.id}-${item.selectedColor}-${item.selectedStorage}-${index}`}>
                 <ItemImage>
                   <img
-                    src={`${IMG_BASE}/${item.imageFileName}`}
+                    src={item.imageUrl}
                     alt={item.name}
                     loading="lazy"
                     onError={e => {

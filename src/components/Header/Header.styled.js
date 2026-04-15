@@ -4,15 +4,28 @@ export const StyledHeader = styled.header`
   position: sticky;
   top: 0;
   z-index: 100;
-  background-color: var(--color-black);
-  color: var(--color-white);
+  background-color: ${({ $scrolled }) =>
+    $scrolled ? 'rgba(255, 255, 255, 0.75)' : 'rgba(255, 255, 255, 0)'};
+  backdrop-filter: ${({ $scrolled }) => ($scrolled ? 'blur(12px)' : 'none')};
+  -webkit-backdrop-filter: ${({ $scrolled }) => ($scrolled ? 'blur(12px)' : 'none')};
+  border-bottom: ${({ $scrolled }) =>
+    $scrolled ? '1px solid rgba(0,0,0,0.08)' : '1px solid transparent'};
+  color: var(--color-black);
   height: var(--header-height);
   display: flex;
   align-items: center;
   padding: 0 var(--spacing-md);
+  transition: background-color 300ms ease, backdrop-filter 300ms ease, border-color 300ms ease;
 
   @media (min-width: 768px) {
     padding: 0 var(--spacing-xl);
+  }
+
+  [data-theme='dark'] & {
+    background-color: ${({ $scrolled }) =>
+      $scrolled ? 'rgba(10, 10, 10, 0.75)' : 'rgba(10, 10, 10, 0)'};
+    border-bottom-color: ${({ $scrolled }) =>
+      $scrolled ? 'rgba(255,255,255,0.08)' : 'transparent'};
   }
 `
 
@@ -27,16 +40,17 @@ export const HeaderInner = styled.div`
 `
 
 export const Logo = styled.a`
-  font-size: 1.125rem;
-  font-weight: 700;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--color-white);
-  white-space: nowrap;
+  display: flex;
+  align-items: center;
   flex-shrink: 0;
+  transition: opacity var(--transition-fast);
+
+  svg path, svg rect {
+    fill: var(--color-black);
+  }
 
   &:hover {
-    opacity: 0.85;
+    opacity: 0.7;
   }
 `
 
@@ -51,34 +65,29 @@ export const CartButton = styled.button`
   display: flex;
   align-items: center;
   gap: var(--spacing-xs);
-  color: var(--color-white);
+  color: var(--color-black);
   font-size: 0.875rem;
   font-weight: 500;
   padding: var(--spacing-xs) var(--spacing-sm);
-  border-radius: var(--spacing-xs);
   transition: opacity var(--transition-fast);
   position: relative;
 
   &:hover {
-    opacity: 0.8;
+    opacity: 0.6;
   }
 
   svg {
-    width: 20px;
-    height: 20px;
+    width: 18px;
+    height: 18px;
+  }
+
+  svg path {
+    fill: var(--color-black);
   }
 `
 
 export const CartBadge = styled.span`
-  background-color: var(--color-white);
+  font-size: 0.75rem;
+  font-weight: 400;
   color: var(--color-black);
-  font-size: 0.7rem;
-  font-weight: 700;
-  min-width: 18px;
-  height: 18px;
-  border-radius: 9999px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0 4px;
 `

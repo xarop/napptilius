@@ -6,7 +6,7 @@
     "cartItems_other": "{{count}} items"
   },
   "search": {
-    "placeholder": "Search smartphones...",
+    "placeholder": "Search for a smartphone...",
     "results": "{{count}} result",
     "results_other": "{{count}} results",
     "noResults": "No results found for \"{{query}}\""
@@ -19,9 +19,11 @@
   "detail": {
     "loading": "Loading details...",
     "error": "Failed to load phone details.",
-    "addToCart": "Add to cart",
+    "addToCart": "Add",
     "color": "Color",
+    "colorQuestion": "Color. Pick your favourite.",
     "storage": "Storage",
+    "storageQuestion": "Storage. How much space do you need?",
     "specs": "Specifications",
     "screen": "Screen",
     "resolution": "Resolution",
@@ -38,7 +40,9 @@
     "empty": "Your cart is empty",
     "total": "Total",
     "remove": "Remove",
-    "added": "{{name}} added to cart"
+    "added": "{{name}} added to cart",
+    "continueShopping": "Continue shopping",
+    "pay": "Pay"
   },
   "accessibility": {
     "logo": "Go to homepage",

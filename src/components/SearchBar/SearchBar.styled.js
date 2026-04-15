@@ -1,45 +1,51 @@
 import styled from 'styled-components'
 
 export const SearchWrapper = styled.div`
-  flex: 1;
-  max-width: 360px;
   position: relative;
+  width: 100%;
 `
 
 export const SearchInput = styled.input`
   width: 100%;
-  background: rgba(255, 255, 255, 0.12);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  color: var(--color-white);
-  padding: 6px 36px 6px 12px;
-  font-size: 0.875rem;
-  border-radius: 2px;
-  transition: background var(--transition-fast), border-color var(--transition-fast);
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--color-black);
+  color: var(--color-black);
+  padding: 10px 36px 10px 0;
+  font-size: 1rem;
   font-family: inherit;
+  transition: border-color var(--transition-fast);
 
   &::placeholder {
-    color: rgba(255, 255, 255, 0.5);
+    color: var(--color-grey-400);
   }
 
   &:focus {
     outline: none;
-    background: rgba(255, 255, 255, 0.18);
-    border-color: rgba(255, 255, 255, 0.4);
+    border-bottom-color: var(--color-black);
+  }
+
+  /* hide browser default clear button */
+  &::-webkit-search-cancel-button {
+    display: none;
   }
 `
 
-export const SearchIconWrapper = styled.span`
+export const ClearButton = styled.button`
   position: absolute;
-  right: 10px;
+  right: 0;
   top: 50%;
   transform: translateY(-50%);
-  color: rgba(255, 255, 255, 0.6);
-  pointer-events: none;
+  color: var(--color-black);
   display: flex;
   align-items: center;
+  padding: 4px;
 
   svg {
-    width: 16px;
-    height: 16px;
+    width: 14px;
+    height: 14px;
   }
 `
+
+/* kept for compatibility but no longer rendered */
+export const SearchIconWrapper = styled.span``

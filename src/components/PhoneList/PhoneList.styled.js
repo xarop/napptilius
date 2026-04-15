@@ -11,6 +11,10 @@ export const ListWrapper = styled.section`
   }
 `
 
+export const SearchSection = styled.div`
+  margin-bottom: var(--spacing-md);
+`
+
 export const ResultsInfo = styled.p`
   font-size: 0.8rem;
   color: var(--color-grey-500);

@@ -30,6 +30,19 @@ const GlobalStyles = createGlobalStyle`
     --header-height: 56px;
   }
 
+  /* Dark mode overrides */
+  [data-theme="dark"] {
+    --color-black: #ffffff;
+    --color-white: #0a0a0a;
+    --color-grey-100: #1a1a1a;
+    --color-grey-200: #2a2a2a;
+    --color-grey-300: #3a3a3a;
+    --color-grey-400: #555555;
+    --color-grey-500: #888888;
+    --color-grey-700: #bbbbbb;
+    --color-grey-900: #e5e5e5;
+  }
+
   *,
   *::before,
   *::after {
@@ -50,6 +63,7 @@ const GlobalStyles = createGlobalStyle`
     line-height: 1.5;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    transition: background-color 250ms ease, color 250ms ease;
   }
 
   a {

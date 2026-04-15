@@ -6,7 +6,7 @@
     "cartItems_other": "{{count}} articles"
   },
   "search": {
-    "placeholder": "Cerca smartphones...",
+    "placeholder": "Cerca un smartphone...",
     "results": "{{count}} resultat",
     "results_other": "{{count}} resultats",
     "noResults": "No s'han trobat resultats per a \"{{query}}\""
@@ -19,9 +19,11 @@
   "detail": {
     "loading": "Carregant detalls...",
     "error": "Error en carregar els detalls del telèfon.",
-    "addToCart": "Afegir a la cistella",
+    "addToCart": "Afegir",
     "color": "Color",
+    "colorQuestion": "Color. Tria el teu preferit.",
     "storage": "Emmagatzematge",
+    "storageQuestion": "Emmagatzematge. Quanta capacitat necessites?",
     "specs": "Especificacions",
     "screen": "Pantalla",
     "resolution": "Resolució",
@@ -38,7 +40,9 @@
     "empty": "La cistella és buida",
     "total": "Total",
     "remove": "Eliminar",
-    "added": "{{name}} afegit a la cistella"
+    "added": "{{name}} afegit a la cistella",
+    "continueShopping": "Continuar comprant",
+    "pay": "Pagar"
   },
   "accessibility": {
     "logo": "Anar a la pàgina d'inici",

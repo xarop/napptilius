@@ -1,5 +1,5 @@
-const BASE_URL = 'https://itx-frontend-test.onrender.com/api'
-const API_KEY = import.meta.env.VITE_API_KEY || ''
+const BASE_URL = 'https://prueba-tecnica-api-tienda-moviles.onrender.com'
+const API_KEY = import.meta.env.VITE_API_KEY || '87909682e6cd74208f41a6ef39fe4191'
 
 const CACHE_TTL = 60 * 60 * 1000 // 1 hour in ms
 const cache = new Map()
@@ -38,8 +38,15 @@ async function request(endpoint) {
 }
 
 export const phonesApi = {
-  getAll: () => request('/phones'),
-  getById: id => request(`/phones/${id}`),
+  getAll: () => request('/products').then(data => {
+    const seen = new Set()
+    return data.filter(p => {
+      if (seen.has(p.id)) return false
+      seen.add(p.id)
+      return true
+    })
+  }),
+  getById: id => request(`/products/${id}`),
 }
 
 export default phonesApi

@@ -49,7 +49,7 @@ export const ProductLayout = styled.div`
 `
 
 export const ImageSection = styled.div`
-  background: var(--color-grey-100);
+  background: var(--color-white);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -71,20 +71,29 @@ export const ImageSection = styled.div`
 export const InfoSection = styled.div`
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-lg);
+  gap: 40px;
+  padding-top: var(--spacing-sm);
+`
+
+export const TitleBlock = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
 `
 
 export const Brand = styled.span`
   font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
+  font-weight: 300;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--color-grey-500);
 `
 
 export const PhoneName = styled.h1`
   font-size: 1.5rem;
-  font-weight: 700;
+  font-weight: 300;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
   line-height: 1.2;
 
   @media (min-width: 768px) {
@@ -94,7 +103,9 @@ export const PhoneName = styled.h1`
 
 export const PriceTag = styled.p`
   font-size: 1.25rem;
-  font-weight: 700;
+  font-weight: 300;
+  letter-spacing: 0.02em;
+  margin-top: 10px;
 `
 
 export const Divider = styled.hr`
@@ -104,64 +115,71 @@ export const Divider = styled.hr`
 
 export const SectionLabel = styled.h2`
   font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
+  font-weight: 300;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--color-grey-500);
-  margin-bottom: var(--spacing-sm);
+  margin-bottom: 14px;
+`
+
+export const ColorName = styled.p`
+  font-size: 0.75rem;
+  font-weight: 300;
+  letter-spacing: 0.04em;
+  color: var(--color-grey-500);
+  margin-top: 10px;
 `
 
 export const ColorOptions = styled.div`
   display: flex;
-  gap: var(--spacing-sm);
+  gap: 16px;
   flex-wrap: wrap;
 `
 
 export const ColorSwatch = styled.button`
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
+  width: 22px;
+  height: 22px;
+  border-radius: 0;
   background: ${({ $color }) => $color};
-  border: 2px solid ${({ $selected }) => ($selected ? 'var(--color-black)' : 'var(--color-grey-300)')};
-  outline-offset: 2px;
-  transition: border-color var(--transition-fast), transform var(--transition-fast);
-  box-shadow: 0 0 0 ${({ $selected }) => ($selected ? '2px white inset' : '0')};
+  border: 1px solid ${({ $selected }) => ($selected ? 'var(--color-black)' : 'var(--color-grey-300)')};
+  transition: border-color var(--transition-fast);
 
   &:hover {
-    transform: scale(1.1);
+    border-color: var(--color-black);
   }
 `
 
 export const StorageOptions = styled.div`
   display: flex;
-  gap: var(--spacing-sm);
-  flex-wrap: wrap;
+  gap: 6px;
 `
 
 export const StorageButton = styled.button`
-  padding: 8px 14px;
+  flex: 1;
+  padding: 12px 8px;
   font-size: 0.8rem;
-  font-weight: 600;
+  font-weight: 300;
   letter-spacing: 0.05em;
-  border: 1.5px solid
-    ${({ $selected }) => ($selected ? 'var(--color-black)' : 'var(--color-grey-300)')};
-  background: ${({ $selected }) => ($selected ? 'var(--color-black)' : 'transparent')};
-  color: ${({ $selected }) => ($selected ? 'var(--color-white)' : 'var(--color-black)')};
+  text-transform: uppercase;
+  text-align: center;
+  border: ${({ $selected }) =>
+    $selected ? '2px solid var(--color-black)' : '1px solid var(--color-grey-300)'};
+  background: transparent;
+  color: var(--color-black);
   transition: all var(--transition-fast);
 
   &:hover {
     border-color: var(--color-black);
-    background: ${({ $selected }) => ($selected ? 'var(--color-black)' : 'var(--color-grey-100)')};
   }
 `
 
 export const AddToCartButton = styled.button`
   width: 100%;
-  padding: 14px var(--spacing-lg);
-  background: var(--color-black);
-  color: var(--color-white);
+  padding: 18px var(--spacing-lg);
+  background: #000000;
+  color: #ffffff;
   font-size: 0.875rem;
-  font-weight: 700;
+  font-weight: 300;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   transition: opacity var(--transition-fast);

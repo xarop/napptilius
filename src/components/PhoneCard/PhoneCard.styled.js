@@ -40,31 +40,44 @@ export const ImageWrapper = styled.div`
 `
 
 export const CardBody = styled.div`
-  padding: var(--spacing-md);
+  padding: 10px var(--spacing-sm);
   display: flex;
   flex-direction: column;
-  gap: 4px;
-  flex: 1;
+  gap: 2px;
+  border-top: 1px solid var(--color-grey-200);
 `
 
 export const Brand = styled.span`
-  font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
+  font-size: 0.65rem;
+  font-weight: 400;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--color-grey-500);
 `
 
-export const Name = styled.h2`
-  font-size: 0.9rem;
-  font-weight: 500;
-  line-height: 1.3;
-  color: var(--color-black);
+export const NamePriceRow = styled.div`
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--spacing-xs);
 `
 
-export const Price = styled.p`
-  font-size: 0.95rem;
-  font-weight: 700;
-  margin-top: auto;
-  padding-top: var(--spacing-sm);
+export const Name = styled.span`
+  font-size: 0.75rem;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-black);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
+`
+
+export const Price = styled.span`
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: var(--color-black);
+  white-space: nowrap;
+  flex-shrink: 0;
 `

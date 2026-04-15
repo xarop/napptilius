@@ -1,18 +1,16 @@
 import PropTypes from 'prop-types'
 import { useTranslation } from 'react-i18next'
-import { Card, ImageWrapper, CardBody, Brand, Name, Price } from './PhoneCard.styled'
-
-const IMG_BASE = 'https://itx-frontend-test.onrender.com/api/images'
+import { Card, ImageWrapper, CardBody, Brand, NamePriceRow, Name, Price } from './PhoneCard.styled'
 
 function PhoneCard({ phone }) {
   const { t } = useTranslation()
-  const { id, brand, name, price, imageFileName } = phone
+  const { id, brand, name, basePrice, imageUrl } = phone
 
   return (
-    <Card to={`/phones/${id}`} aria-label={`${brand} ${name} – ${price} EUR`}>
+    <Card to={`/phones/${id}`} aria-label={`${brand} ${name} – ${basePrice} EUR`}>
       <ImageWrapper>
         <img
-          src={`${IMG_BASE}/${imageFileName}`}
+          src={imageUrl}
           alt={t('accessibility.phoneImage', { name })}
           loading="lazy"
           onError={e => {
@@ -22,8 +20,10 @@ function PhoneCard({ phone }) {
       </ImageWrapper>
       <CardBody>
         <Brand>{brand}</Brand>
-        <Name>{name}</Name>
-        <Price>{price} EUR</Price>
+        <NamePriceRow>
+          <Name>{name}</Name>
+          <Price>{basePrice} EUR</Price>
+        </NamePriceRow>
       </CardBody>
     </Card>
   )
@@ -34,8 +34,8 @@ PhoneCard.propTypes = {
     id: PropTypes.string.isRequired,
     brand: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
-    price: PropTypes.number.isRequired,
-    imageFileName: PropTypes.string.isRequired,
+    basePrice: PropTypes.number.isRequired,
+    imageUrl: PropTypes.string.isRequired,
   }).isRequired,
 }
 

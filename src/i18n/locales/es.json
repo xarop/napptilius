@@ -6,7 +6,7 @@
     "cartItems_other": "{{count}} artículos"
   },
   "search": {
-    "placeholder": "Buscar smartphones...",
+    "placeholder": "Busca un smartphone...",
     "results": "{{count}} resultado",
     "results_other": "{{count}} resultados",
     "noResults": "No se encontraron resultados para \"{{query}}\""
@@ -19,9 +19,11 @@
   "detail": {
     "loading": "Cargando detalles...",
     "error": "Error al cargar los detalles del teléfono.",
-    "addToCart": "Añadir al carrito",
+    "addToCart": "Añadir",
     "color": "Color",
+    "colorQuestion": "Color. Elige tu favorito.",
     "storage": "Almacenamiento",
+    "storageQuestion": "Almacenamiento ¿Cuánta capacidad necesitas?",
     "specs": "Especificaciones",
     "screen": "Pantalla",
     "resolution": "Resolución",
@@ -38,7 +40,9 @@
     "empty": "El carrito está vacío",
     "total": "Total",
     "remove": "Eliminar",
-    "added": "{{name}} añadido al carrito"
+    "added": "{{name}} añadido al carrito",
+    "continueShopping": "Seguir comprando",
+    "pay": "Pagar"
   },
   "accessibility": {
     "logo": "Ir a la página de inicio",

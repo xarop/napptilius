@@ -1,8 +1,10 @@
 import { useTranslation } from 'react-i18next'
 import { usePhones } from '../../context/PhoneContext'
 import PhoneCard from '../PhoneCard/PhoneCard'
+import SearchBar from '../SearchBar/SearchBar'
 import {
   ListWrapper,
+  SearchSection,
   ResultsInfo,
   Grid,
   NoResults,
@@ -20,6 +22,9 @@ function PhoneList() {
   if (loading) {
     return (
       <ListWrapper aria-busy="true" aria-label={t('home.loading')}>
+        <SearchSection>
+          <SearchBar />
+        </SearchSection>
         <LoadingWrapper>
           {Array.from({ length: SKELETON_COUNT }).map((_, i) => (
             <SkeletonCard key={i} />
@@ -32,6 +37,9 @@ function PhoneList() {
   if (error) {
     return (
       <ListWrapper>
+        <SearchSection>
+          <SearchBar />
+        </SearchSection>
         <ErrorWrapper role="alert">
           <p>{t('home.error')}</p>
           <button onClick={fetchPhones}>{t('detail.back')}</button>
@@ -43,6 +51,9 @@ function PhoneList() {
   if (filteredPhones.length === 0 && searchQuery) {
     return (
       <ListWrapper>
+        <SearchSection>
+          <SearchBar />
+        </SearchSection>
         <ResultsInfo aria-live="polite">
           {t('search.noResults', { query: searchQuery })}
         </ResultsInfo>
@@ -53,6 +64,9 @@ function PhoneList() {
 
   return (
     <ListWrapper>
+      <SearchSection>
+        <SearchBar />
+      </SearchSection>
       <ResultsInfo aria-live="polite" aria-atomic="true">
         {t('search.results', { count: filteredPhones.length })}
       </ResultsInfo>

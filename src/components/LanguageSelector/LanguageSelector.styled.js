@@ -5,7 +5,7 @@ export const SelectorWrapper = styled.div`
 `
 
 export const LangButton = styled.button`
-  color: var(--color-white);
+  color: var(--color-black);
   font-size: 0.8rem;
   font-weight: 600;
   letter-spacing: 0.05em;
@@ -13,7 +13,7 @@ export const LangButton = styled.button`
   padding: 4px 8px;
   border-radius: 2px;
   transition: opacity var(--transition-fast);
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  border: 1px solid var(--color-grey-300);
 
   &:hover {
     opacity: 0.8;
