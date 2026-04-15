@@ -1,0 +1,63 @@
+{
+  "header": {
+    "title": "MOBILE STORE",
+    "cart": "Cistella",
+    "cartItems": "{{count}} article",
+    "cartItems_other": "{{count}} articles"
+  },
+  "search": {
+    "placeholder": "Cerca smartphones...",
+    "results": "{{count}} resultat",
+    "results_other": "{{count}} resultats",
+    "noResults": "No s'han trobat resultats per a \"{{query}}\""
+  },
+  "home": {
+    "title": "Smartphones",
+    "loading": "Carregant telèfons...",
+    "error": "Error en carregar els telèfons. Torna-ho a intentar."
+  },
+  "detail": {
+    "loading": "Carregant detalls...",
+    "error": "Error en carregar els detalls del telèfon.",
+    "addToCart": "Afegir a la cistella",
+    "color": "Color",
+    "storage": "Emmagatzematge",
+    "specs": "Especificacions",
+    "screen": "Pantalla",
+    "resolution": "Resolució",
+    "processor": "Processador",
+    "mainCamera": "Càmera principal",
+    "selfieCamera": "Càmera selfie",
+    "battery": "Bateria",
+    "os": "Sistema operatiu",
+    "screenRefreshRate": "Freqüència d'actualització",
+    "back": "Tornar"
+  },
+  "cart": {
+    "title": "Cistella",
+    "empty": "La cistella és buida",
+    "total": "Total",
+    "remove": "Eliminar",
+    "added": "{{name}} afegit a la cistella"
+  },
+  "accessibility": {
+    "logo": "Anar a la pàgina d'inici",
+    "searchIcon": "Cercar",
+    "cartIcon": "Veure cistella",
+    "phoneImage": "Imatge de {{name}}",
+    "closeCart": "Tancar cistella",
+    "languageSelector": "Seleccionar idioma",
+    "colorOption": "Color {{name}}",
+    "storageOption": "Emmagatzematge {{capacity}}"
+  },
+  "language": {
+    "es": "Español",
+    "ca": "Català",
+    "en": "English"
+  },
+  "errors": {
+    "notFound": "Pàgina no trobada",
+    "notFoundDesc": "La pàgina que busques no existeix.",
+    "goHome": "Tornar a l'inici"
+  }
+}

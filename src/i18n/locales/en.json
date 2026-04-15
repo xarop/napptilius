@@ -1,0 +1,63 @@
+{
+  "header": {
+    "title": "MOBILE STORE",
+    "cart": "Cart",
+    "cartItems": "{{count}} item",
+    "cartItems_other": "{{count}} items"
+  },
+  "search": {
+    "placeholder": "Search smartphones...",
+    "results": "{{count}} result",
+    "results_other": "{{count}} results",
+    "noResults": "No results found for \"{{query}}\""
+  },
+  "home": {
+    "title": "Smartphones",
+    "loading": "Loading phones...",
+    "error": "Failed to load phones. Please try again."
+  },
+  "detail": {
+    "loading": "Loading details...",
+    "error": "Failed to load phone details.",
+    "addToCart": "Add to cart",
+    "color": "Color",
+    "storage": "Storage",
+    "specs": "Specifications",
+    "screen": "Screen",
+    "resolution": "Resolution",
+    "processor": "Processor",
+    "mainCamera": "Main camera",
+    "selfieCamera": "Selfie camera",
+    "battery": "Battery",
+    "os": "Operating system",
+    "screenRefreshRate": "Refresh rate",
+    "back": "Back"
+  },
+  "cart": {
+    "title": "Cart",
+    "empty": "Your cart is empty",
+    "total": "Total",
+    "remove": "Remove",
+    "added": "{{name}} added to cart"
+  },
+  "accessibility": {
+    "logo": "Go to homepage",
+    "searchIcon": "Search",
+    "cartIcon": "View cart",
+    "phoneImage": "Image of {{name}}",
+    "closeCart": "Close cart",
+    "languageSelector": "Select language",
+    "colorOption": "Color {{name}}",
+    "storageOption": "Storage {{capacity}}"
+  },
+  "language": {
+    "es": "Español",
+    "ca": "Català",
+    "en": "English"
+  },
+  "errors": {
+    "notFound": "Page not found",
+    "notFoundDesc": "The page you are looking for does not exist.",
+    "goHome": "Back to home"
+  }
+}
