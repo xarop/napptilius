@@ -15,8 +15,8 @@ const mockPhone = {
   id: 'APPLE-IPHONE-15',
   brand: 'Apple',
   name: 'iPhone 15',
-  price: 799,
-  imageFileName: 'APPLE-IPHONE-15.jpg',
+  basePrice: 799,
+  imageUrl: 'https://example.com/APPLE-IPHONE-15.jpg',
 }
 
 function renderCard(phone = mockPhone) {
