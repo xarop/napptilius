@@ -60,6 +60,9 @@
     "ca": "Català",
     "en": "English"
   },
+  "common": {
+    "from": "From"
+  },
   "errors": {
     "notFound": "Page not found",
     "notFoundDesc": "The page you are looking for does not exist.",
