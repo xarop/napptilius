@@ -20,7 +20,7 @@ describe('phonesApi', () => {
     const result = await phonesApi.getAll()
     expect(result).toEqual(mockPhones)
     expect(fetch).toHaveBeenCalledWith(
-      expect.stringContaining('/phones'),
+      expect.stringContaining('/products'),
       expect.any(Object)
     )
   })
@@ -35,7 +35,7 @@ describe('phonesApi', () => {
     const result = await phonesApi.getById('APPLE-IPHONE-15')
     expect(result).toEqual(detail)
     expect(fetch).toHaveBeenCalledWith(
-      expect.stringContaining('/phones/APPLE-IPHONE-15'),
+      expect.stringContaining('/products/APPLE-IPHONE-15'),
       expect.any(Object)
     )
   })
