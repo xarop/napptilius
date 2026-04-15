@@ -60,6 +60,9 @@
     "ca": "Català",
     "en": "English"
   },
+  "common": {
+    "from": "Desde"
+  },
   "errors": {
     "notFound": "Página no encontrada",
     "notFoundDesc": "La página que buscas no existe.",

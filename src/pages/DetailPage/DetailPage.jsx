@@ -165,7 +165,7 @@ function DetailPage() {
           <TitleBlock>
             <Brand>{phone.brand}</Brand>
             <PhoneName>{phone.name}</PhoneName>
-            <PriceTag>{currentPrice} EUR</PriceTag>
+            <PriceTag>{!selectedStorage && `${t('common.from')} `}{currentPrice} EUR</PriceTag>
           </TitleBlock>
 
           <Divider />
