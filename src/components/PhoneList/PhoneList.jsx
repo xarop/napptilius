@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
+import { useAutoAnimate } from '@formkit/auto-animate/react'
 import { usePhones } from '../../context/PhoneContext'
 import PhoneCard from '../PhoneCard/PhoneCard'
 import SearchBar from '../SearchBar/SearchBar'
@@ -22,6 +23,7 @@ function PhoneList() {
   const { t } = useTranslation()
   const { filteredPhones, loading, error, searchQuery, fetchPhones } = usePhones()
   const [isSlow, setIsSlow] = useState(false)
+  const [animationParent] = useAutoAnimate()
 
   useEffect(() => {
     if (!loading) {
@@ -85,7 +87,7 @@ function PhoneList() {
         </ResultsInfo>
       </SearchSection>
 
-      <Grid aria-label={t('home.title')}>
+      <Grid ref={animationParent} aria-label={t('home.title')}>
         {filteredPhones.map(phone => (
           <li key={phone.id}>
             <PhoneCard phone={phone} />
