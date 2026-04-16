@@ -14,9 +14,11 @@ export const PageWrapper = styled.main`
 `
 
 export const Title = styled.h1`
-  font-size: var(--fs-md);
-  font-weight: var(--fw-bold);
-  letter-spacing: var(--ls-wider);
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 24px;
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: 0;
   text-transform: uppercase;
   margin-bottom: var(--spacing-xl);
 `

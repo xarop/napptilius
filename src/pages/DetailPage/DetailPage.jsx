@@ -67,6 +67,7 @@ function DetailPage() {
       .then(data => {
         if (cancelled) return
         setPhone(data)
+        setSelectedColor(data.colorOptions?.[0]?.hexCode ?? null)
       })
       .catch(err => {
         if (!cancelled) setError(err.message)
