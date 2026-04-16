@@ -16,14 +16,15 @@ export const SearchSection = styled.div`
   top: var(--header-height);
   z-index: calc(var(--z-header) - 1);
   background: var(--color-white);
-  padding: var(--spacing-lg) 0 var(--spacing-sm);
-  margin-bottom: var(--spacing-sm);
+  padding: var(--spacing-lg) 0 var(--spacing-md);
+  margin-bottom: 0;
 `
 
 export const ResultsInfo = styled.p`
   font-size: var(--fs-body);
   color: var(--color-grey-500);
-  margin-bottom: var(--spacing-2xl);
+  margin-top: var(--spacing-sm);
+  margin-bottom: 0;
   letter-spacing: 0.03em;
   text-transform: uppercase;
 `
@@ -32,6 +33,7 @@ export const Grid = styled.ul`
   display: grid;
   grid-template-columns: 1fr;
   gap: 0;
+  margin-top: var(--spacing-2xl);
   border-top: 0.5px solid var(--color-black);
   border-left: 0.5px solid var(--color-black);
 

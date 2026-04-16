@@ -80,10 +80,10 @@ function PhoneList() {
     <ListWrapper>
       <SearchSection>
         <SearchBar />
+        <ResultsInfo aria-live="polite" aria-atomic="true">
+          {t('search.results', { count: filteredPhones.length })}
+        </ResultsInfo>
       </SearchSection>
-      <ResultsInfo aria-live="polite" aria-atomic="true">
-        {t('search.results', { count: filteredPhones.length })}
-      </ResultsInfo>
 
       <Grid aria-label={t('home.title')}>
         {filteredPhones.map(phone => (
