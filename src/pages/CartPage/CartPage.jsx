@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { useCart } from '../../context/CartContext'
 import {
@@ -25,6 +26,7 @@ import {
 
 function CartPage() {
   const { t } = useTranslation()
+  const navigate = useNavigate()
   const { items, totalItems, totalPrice, removeItem, incrementItem, decrementItem } = useCart()
 
   return (
@@ -96,7 +98,7 @@ function CartPage() {
               <TotalLabel>{t('cart.total')}</TotalLabel>
               <TotalPrice>{totalPrice} EUR</TotalPrice>
             </TotalSection>
-            <PayButton aria-label={t('cart.pay')}>{t('cart.pay')}</PayButton>
+            <PayButton aria-label={t('cart.pay')} onClick={() => navigate('/order-confirmation')}>{t('cart.pay')}</PayButton>
           </>
         )}
       </Footer>

@@ -13,6 +13,10 @@ function Footer() {
           xarop.com
         </a>
       </span>
+      <span aria-hidden="true"> · </span>
+      <a href="https://github.com/xarop/napptilius/" target="_blank" rel="noopener noreferrer">
+        GitHub
+      </a>
     </StyledFooter>
   )
 }

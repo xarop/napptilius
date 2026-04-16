@@ -10,6 +10,7 @@ import Footer from './components/Footer/Footer'
 import HomePage from './pages/HomePage/HomePage'
 import DetailPage from './pages/DetailPage/DetailPage'
 import CartPage from './pages/CartPage/CartPage'
+import OrderConfirmationPage from './pages/OrderConfirmationPage/OrderConfirmationPage'
 import NotFound from './components/NotFound/NotFound'
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
             <Route path="/" element={<HomePage />} />
             <Route path="/phones/:id" element={<DetailPage />} />
             <Route path="/cart" element={<CartPage />} />
+            <Route path="/order-confirmation" element={<OrderConfirmationPage />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
           <Footer />
