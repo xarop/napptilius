@@ -60,7 +60,14 @@ The app uses **React Context API** with two contexts:
 `src/services/api.js` wraps `fetch` with:
 - **In-memory cache** (Map) with 1-hour TTL – avoids re-fetching on navigation.
 - **x-api-key** header injected from `VITE_API_KEY` env var.
-- Endpoints: `GET /phones`, `GET /phones/:id`.
+- Endpoints: `GET /products`, `GET /products/:id`.
+
+## Loading UX
+
+- **HTML preloader** – an inline spinner and "Mobile Store" label live directly in `index.html` inside `#root`. It is visible before any JS downloads, so users see feedback instantly. React's `createRoot().render()` replaces it automatically when the app mounts.
+- **Phone list** – `PhoneContext` initialises `loading` as `true` (not `false`) to prevent a flash of empty grid on first render. While fetching `GET /products`, a pulse-animated grid of 10 `SkeletonCard` placeholders is shown. After 6 s without a response, a `SlowNotice` banner appears informing the user the server is waking up (translatable key `home.slowConnection`).
+- **Detail page** – while `DetailPage` fetches `GET /products/:id`, a full shimmer skeleton replicates the real layout: image block, title lines, storage-button row, colour-swatch row, and add-to-cart button.
+- **Phone card images** – each `<img>` starts at `opacity: 0` and transitions to `opacity: 1` on the `onLoad` event, avoiding a jarring pop-in.
 
 ## Styling
 
@@ -102,9 +109,9 @@ src/
 Run:
 
 ```bash
-npm test              # Single run
-npm run test:watch    # Watch mode
-npm run test:coverage # Coverage report
+bun run test          # Single run
+bun run test:watch    # Watch mode
+bun run test:coverage # Coverage report
 ```
 
 ## Code Style

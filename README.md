@@ -14,13 +14,14 @@ Single-page application that fetches a list of smartphones from a REST API, allo
 
 ## Features
 
-- 📋 **Phone list** with real-time search filter and sticky search bar
-- 🔍 **Detail page** with specs table, color & storage selectors, similar items strip
+- 📋 **Phone list** with real-time search filter, sticky search bar and shimmer skeleton cards
+- 🔍 **Detail page** with specs table, color & storage selectors, similar items strip and skeleton loading layout
 - 🛒 **Cart page** with item management and responsive footer
 - 🌓 **Dark mode** toggle
 - 🌍 **Multilingual** – English / Spanish / Catalan
 - ♿ **Accessible** – ARIA roles, skip navigation, keyboard support
 - 📱 **Responsive** – mobile-first layout
+- ⏳ **Smart loading UX** – inline HTML preloader, shimmer skeletons, slow-server notice after 6 s, image fade-in
 - 🧪 **Tested** – Vitest + React Testing Library (19 tests)
 - 🔧 **Linted** – ESLint + Prettier
 - 🚀 **Deployed** – GitHub Pages via GitHub Actions

@@ -1,4 +1,58 @@
-import styled from 'styled-components'
+import styled, { keyframes, css } from 'styled-components'
+
+const shimmer = keyframes`
+  0%   { background-position: -600px 0; }
+  100% { background-position:  600px 0; }
+`
+
+const skeletonBase = css`
+  background: linear-gradient(
+    90deg,
+    var(--color-grey-100) 25%,
+    var(--color-grey-200) 50%,
+    var(--color-grey-100) 75%
+  );
+  background-size: 1200px 100%;
+  animation: ${shimmer} 1.6s infinite linear;
+  border-radius: 2px;
+`
+
+export const SkeletonImage = styled.div`
+  ${skeletonBase}
+  width: 100%;
+  aspect-ratio: 1;
+  min-height: 320px;
+
+  @media (min-width: 768px) {
+    min-height: 480px;
+  }
+`
+
+export const SkeletonLine = styled.div`
+  ${skeletonBase}
+  height: ${({ $h }) => $h || '16px'};
+  width: ${({ $w }) => $w || '100%'};
+  margin-bottom: ${({ $mb }) => $mb || '0'};
+`
+
+export const SkeletonButton = styled.div`
+  ${skeletonBase}
+  width: 95px;
+  height: 44px;
+`
+
+export const SkeletonSwatch = styled.div`
+  ${skeletonBase}
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+`
+
+export const SkeletonRow = styled.div`
+  display: flex;
+  gap: var(--spacing-sm);
+  align-items: center;
+`
 
 export const PageWrapper = styled.main`
   max-width: 1280px;

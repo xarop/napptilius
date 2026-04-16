@@ -40,7 +40,9 @@ describe('PhoneCard', () => {
 
   it('renders phone price with EUR', () => {
     renderCard()
-    expect(screen.getByText('799 EUR')).toBeInTheDocument()
+    // Price is split across spans: "common.from" + "799" + " EUR"
+    expect(screen.getByText(/799/)).toBeInTheDocument()
+    expect(screen.getByText(/EUR/)).toBeInTheDocument()
   })
 
   it('links to detail page', () => {

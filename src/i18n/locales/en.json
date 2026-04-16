@@ -14,6 +14,7 @@
   "home": {
     "title": "Smartphones",
     "loading": "Loading phones...",
+    "slowConnection": "The server is waking up, this may take a moment…",
     "error": "Failed to load phones. Please try again."
   },
   "detail": {

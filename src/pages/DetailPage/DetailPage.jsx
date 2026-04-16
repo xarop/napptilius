@@ -23,6 +23,11 @@ import {
   StorageButton,
   AddToCartButton,
   SpecsTable,
+  SkeletonImage,
+  SkeletonLine,
+  SkeletonButton,
+  SkeletonSwatch,
+  SkeletonRow,
 } from './DetailPage.styled'
 
 function BackIcon() {
@@ -114,7 +119,35 @@ function DetailPage() {
   if (loading) {
     return (
       <PageWrapper aria-busy="true">
-        <p>{t('detail.loading')}</p>
+        <ProductLayout>
+          <SkeletonImage />
+          <InfoSection>
+            <TitleBlock>
+              <SkeletonLine $h="14px" $w="60px" $mb="10px" />
+              <SkeletonLine $h="22px" $w="75%" $mb="12px" />
+              <SkeletonLine $h="18px" $w="100px" />
+            </TitleBlock>
+            <Divider />
+            <div>
+              <SkeletonLine $h="12px" $w="200px" $mb="12px" />
+              <SkeletonRow>
+                <SkeletonButton />
+                <SkeletonButton />
+                <SkeletonButton />
+              </SkeletonRow>
+            </div>
+            <div>
+              <SkeletonLine $h="12px" $w="160px" $mb="12px" />
+              <SkeletonRow>
+                <SkeletonSwatch />
+                <SkeletonSwatch />
+                <SkeletonSwatch />
+                <SkeletonSwatch />
+              </SkeletonRow>
+            </div>
+            <SkeletonLine $h="52px" $w="100%" />
+          </InfoSection>
+        </ProductLayout>
       </PageWrapper>
     )
   }

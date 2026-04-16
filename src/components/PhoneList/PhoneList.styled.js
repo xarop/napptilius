@@ -90,6 +90,20 @@ export const SkeletonCard = styled.div`
   }
 `
 
+export const SlowNotice = styled.p`
+  font-size: var(--fs-body);
+  color: var(--color-grey-500);
+  letter-spacing: 0.03em;
+  text-align: center;
+  padding: var(--spacing-md) 0 var(--spacing-lg);
+  animation: fadeIn 0.6s ease;
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(4px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+`
+
 export const ErrorWrapper = styled.div`
   text-align: center;
   padding: var(--spacing-2xl) var(--spacing-md);

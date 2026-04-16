@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { usePhones } from '../../context/PhoneContext'
 import PhoneCard from '../PhoneCard/PhoneCard'
@@ -10,14 +11,26 @@ import {
   NoResults,
   LoadingWrapper,
   SkeletonCard,
+  SlowNotice,
   ErrorWrapper,
 } from './PhoneList.styled'
 
 const SKELETON_COUNT = 10
+const SLOW_THRESHOLD_MS = 6000
 
 function PhoneList() {
   const { t } = useTranslation()
   const { filteredPhones, loading, error, searchQuery, fetchPhones } = usePhones()
+  const [isSlow, setIsSlow] = useState(false)
+
+  useEffect(() => {
+    if (!loading) {
+      setIsSlow(false)
+      return
+    }
+    const timer = setTimeout(() => setIsSlow(true), SLOW_THRESHOLD_MS)
+    return () => clearTimeout(timer)
+  }, [loading])
 
   if (loading) {
     return (
@@ -25,6 +38,7 @@ function PhoneList() {
         <SearchSection>
           <SearchBar />
         </SearchSection>
+        {isSlow && <SlowNotice role="status">{t('home.slowConnection')}</SlowNotice>}
         <LoadingWrapper>
           {Array.from({ length: SKELETON_COUNT }).map((_, i) => (
             <SkeletonCard key={i} />

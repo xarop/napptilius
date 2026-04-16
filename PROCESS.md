@@ -101,12 +101,13 @@ src/
 Components built in order of dependency (bottom-up):
 
 1. **PhoneCard** – link card with image, brand, name, price.
-2. **PhoneList** – grid with loading skeletons (pulse animation), error state, no-results state, results count (`aria-live`).
+2. **PhoneList** – grid with loading skeletons (pulse animation), error state, no-results state, results count (`aria-live`), and a slow-connection notice that appears after 6 s.
 3. **SearchBar** – controlled input inside `<section role="search">`.
 4. **LanguageSelector** – custom dropdown; closes on outside click and Escape.
 5. **CartDrawer** – slide-in `role="dialog"` panel; traps scroll; closes on Escape and overlay click.
 6. **Header** – sticky black bar combining Logo, SearchBar, LanguageSelector, CartButton.
-7. **DetailPage** – fetches phone by `:id`, renders image, color swatches, storage buttons, add-to-cart, specs table.
+7. **DetailPage** – fetches phone by `:id`, renders a shimmer skeleton layout while loading, then image, color swatches, storage buttons, add-to-cart, specs table.
+8. **PhoneCard** – link card with image (fade-in on load), brand, name, from-price.
 8. **NotFound** – 404 page with link back to home.
 
 **Accessibility checklist applied:**
@@ -158,7 +159,28 @@ Three Markdown documents created, each trilingual (EN / CA / ES):
 
 ---
 
-## Challenges & Decisions
+### Phase 8 – Loading UX
+
+Improved perceived performance and user feedback during API cold starts (the Render free tier hibernates after inactivity):
+
+| Feature | File | Detail |
+|---|---|---|
+| **HTML preloader** | `index.html` | Inline spinner + "Mobile Store" label inside `#root`. Visible before any JS loads. Removed automatically when React mounts. |
+| **No empty-grid flash** | `PhoneContext.jsx` | `loading` initialised as `true` instead of `false` — skeleton renders on the very first frame. |
+| **Slow-server notice** | `PhoneList.jsx` | After 6 s with no response, a translatable banner appears: *"The server is waking up…"* Clears automatically when data arrives. |
+| **Detail page skeleton** | `DetailPage.jsx` / `DetailPage.styled.js` | Full shimmer layout matching the real page structure (image block, title, storage buttons, colour swatches, CTA). Uses CSS `keyframes` shimmer animation via `styled-components`. |
+| **Image fade-in** | `PhoneCard.jsx` / `PhoneCard.styled.js` | Cards start at `opacity: 0`; `onLoad` sets `opacity: 1`. CSS transition handles the smooth reveal. |
+
+---
+
+### Phase 9 – UX Refinements
+
+- Storage buttons: fixed width 95 px (no stretching).
+- Phone card + detail page: *From X EUR* prefix on `basePrice` until a storage option is selected, then exact `storageOption.price` is shown.
+- Cart footer (mobile): `column-gap` separates Continue Shopping and Pay buttons.
+- Site footer updated: *Developed in Barcelona by xarop.com*.
+
+---
 
 ### Why Vitest over Jest?
 Vite uses native ESM. Jest needs Babel or complex transform config to handle ESM imports. Vitest integrates natively, runs in the same Vite environment, and needs zero extra config.

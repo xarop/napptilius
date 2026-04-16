@@ -6,7 +6,7 @@ const PhoneContext = createContext(null)
 
 export function PhoneProvider({ children }) {
   const [phones, setPhones] = useState([])
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
   const [searchQuery, setSearchQuery] = useState('')
 

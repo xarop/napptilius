@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import PropTypes from 'prop-types'
 import { useTranslation } from 'react-i18next'
 import { Card, ImageWrapper, CardBody, Brand, NamePriceRow, Name, Price } from './PhoneCard.styled'
@@ -5,6 +6,7 @@ import { Card, ImageWrapper, CardBody, Brand, NamePriceRow, Name, Price } from '
 function PhoneCard({ phone }) {
   const { t } = useTranslation()
   const { id, brand, name, basePrice, imageUrl } = phone
+  const [imgLoaded, setImgLoaded] = useState(false)
 
   return (
     <Card to={`/phones/${id}`} aria-label={`${brand} ${name} – ${t('common.from')} ${basePrice} EUR`}>
@@ -13,6 +15,8 @@ function PhoneCard({ phone }) {
           src={imageUrl}
           alt={t('accessibility.phoneImage', { name })}
           loading="lazy"
+          style={{ opacity: imgLoaded ? 1 : 0 }}
+          onLoad={() => setImgLoaded(true)}
           onError={e => {
             e.target.style.display = 'none'
           }}

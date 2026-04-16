@@ -43,7 +43,7 @@ export const ImageWrapper = styled.div`
     width: 100%;
     height: 100%;
     object-fit: contain;
-    transition: transform var(--transition-base);
+    transition: transform var(--transition-base), opacity var(--transition-base);
   }
 
 
