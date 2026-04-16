@@ -77,6 +77,19 @@ export const ItemVariant = styled.p`
   text-transform: uppercase;
   color: var(--color-grey-500);
   margin-bottom: var(--spacing-sm);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+`
+
+export const ColorSwatch = styled.span`
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border-radius: 2px;
+  background: ${({ $color }) => $color};
+  border: 0.5px solid rgba(0, 0, 0, 0.25);
+  flex-shrink: 0;
 `
 
 export const QtyControl = styled.div`
@@ -231,12 +244,13 @@ export const PayButton = styled.button`
     opacity: 0.85;
   }
 
-  /* desktop: right edge, full-height */
+  /* desktop: right edge, same height as ContinueButton */
   @media (min-width: 768px) {
     order: 0;
     flex: none;
     padding: 20px var(--spacing-2xl);
-    align-self: stretch;
+    align-self: center;
+    margin: var(--spacing-md) var(--spacing-xl);
     min-width: 200px;
   }
 `

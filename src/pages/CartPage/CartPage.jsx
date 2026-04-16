@@ -9,6 +9,7 @@ import {
   ItemInfo,
   ItemName,
   ItemVariant,
+  ColorSwatch,
   QtyControl,
   QtyButton,
   QtyValue,
@@ -51,7 +52,13 @@ function CartPage() {
               <ItemInfo>
                 <ItemName>{item.name}</ItemName>
                 <ItemVariant>
-                  {item.selectedStorage} | {item.selectedColor}
+                  {item.selectedStorage}
+                  {item.selectedColor && (
+                    <>
+                      <ColorSwatch $color={item.selectedColor} aria-hidden="true" />
+                      {item.selectedColorName && item.selectedColorName}
+                    </>
+                  )}
                 </ItemVariant>
                 <QtyControl>
                   <QtyButton

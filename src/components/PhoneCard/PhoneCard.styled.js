@@ -4,8 +4,10 @@ import { Link } from 'react-router-dom'
 export const Card = styled(Link)`
   display: flex;
   flex-direction: column;
+  width: 100%;
   background: var(--color-white);
-  border: 1px solid var(--color-grey-200);
+  border-right: 0.5px solid var(--color-black);
+  border-bottom: 0.5px solid var(--color-black);
   text-decoration: none;
   color: inherit;
   overflow: hidden;
@@ -34,7 +36,7 @@ export const ImageWrapper = styled.div`
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  padding: var(--spacing-lg);
+  padding: var(--spacing-md);
   position: relative;
   z-index: 1;
   transition: background var(--transition-slow);

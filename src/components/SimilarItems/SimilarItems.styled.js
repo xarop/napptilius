@@ -27,9 +27,10 @@ export const Heading = styled.h2`
 
 export const Strip = styled.ul`
   display: flex;
-  gap: 1px;
+  gap: 0;
   overflow-x: auto;
   list-style: none;
+  align-items: stretch;
   /* pad strip so first/last cards align with page content */
   padding-left: var(--spacing-md);
   padding-right: var(--spacing-md);
@@ -64,10 +65,17 @@ export const Strip = styled.ul`
 `
 
 export const StripItem = styled.li`
-  flex: 0 0 85%;
+  flex: 0 0 344px;
+  width: 344px;
+  height: 344px;
   background: var(--color-white);
+  border: 0.5px solid var(--color-black);
+  display: flex;
+  flex-shrink: 0;
 
-  @media (min-width: 768px) {
-    flex: 0 0 220px;
+  @media (max-width: 768px) {
+    flex: 0 0 85%;
+    width: 85%;
+    height: auto;
   }
 `

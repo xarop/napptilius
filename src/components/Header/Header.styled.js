@@ -14,12 +14,7 @@ export const StyledHeader = styled.header`
   height: var(--header-height);
   display: flex;
   align-items: center;
-  padding: 0 var(--spacing-md);
   transition: background-color 300ms ease, backdrop-filter 300ms ease, border-color 300ms ease;
-
-  @media (min-width: 768px) {
-    padding: 0 var(--spacing-xl);
-  }
 
   [data-theme='dark'] & {
     background-color: ${({ $scrolled }) =>
@@ -33,10 +28,15 @@ export const HeaderInner = styled.div`
   width: 100%;
   max-width: var(--max-width-page);
   margin: 0 auto;
+  padding: 0 var(--spacing-md);
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: var(--spacing-md);
+
+  @media (min-width: 768px) {
+    padding: 0 var(--spacing-xl);
+  }
 `
 
 export const Logo = styled.a`

@@ -11,7 +11,7 @@ export const SearchInput = styled.input`
   border: none;
   border-bottom: 1px solid var(--color-black);
   color: var(--color-black);
-  padding: 10px 36px 10px 0;
+  padding: var(--spacing-md) 36px var(--spacing-md) 0;
   font-size: var(--fs-base);
   font-family: inherit;
   transition: border-color var(--transition-fast);

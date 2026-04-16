@@ -93,6 +93,7 @@ function DetailPage() {
       imageUrl: colorOption?.imageUrl ?? phone.colorOptions?.[0]?.imageUrl,
       price,
       selectedColor,
+      selectedColorName: colorOption?.name ?? null,
       selectedStorage,
     })
 

@@ -297,7 +297,7 @@ export const SpecsTable = styled.section`
   }
 
   dt {
-    flex: 0 0 160px;
+    flex: 0 0 300px;
     font-size: var(--fs-xs);
     font-weight: var(--fw-regular);
     letter-spacing: var(--ls-widest);
