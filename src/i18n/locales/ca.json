@@ -42,6 +42,8 @@
     "empty": "La cistella és buida",
     "total": "Total",
     "remove": "Eliminar",
+    "decrease": "Reduir quantitat de",
+    "increase": "Augmentar quantitat de",
     "added": "{{name}} afegit a la cistella",
     "continueShopping": "Continuar comprant",
     "pay": "Pagar"

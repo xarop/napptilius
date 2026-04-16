@@ -42,6 +42,8 @@
     "empty": "Your cart is empty",
     "total": "Total",
     "remove": "Remove",
+    "decrease": "Decrease quantity of",
+    "increase": "Increase quantity of",
     "added": "{{name}} added to cart",
     "continueShopping": "Continue shopping",
     "pay": "Pay"

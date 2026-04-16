@@ -34,7 +34,7 @@ export const ImageWrapper = styled.div`
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  padding: var(--spacing-md);
+  padding: var(--spacing-lg);
   position: relative;
   z-index: 1;
   transition: background var(--transition-slow);
@@ -45,8 +45,6 @@ export const ImageWrapper = styled.div`
     object-fit: contain;
     transition: transform var(--transition-base), opacity var(--transition-base);
   }
-
-
 
   ${Card}:hover & img {
     transform: scale(1.04);

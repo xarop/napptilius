@@ -22,6 +22,23 @@ const cartReducer = (state, action) => {
       }
       return { ...state, items: [...state.items, { ...action.payload, quantity: 1 }] }
     }
+    case 'INCREMENT_ITEM': {
+      const updated = [...state.items]
+      updated[action.payload] = {
+        ...updated[action.payload],
+        quantity: updated[action.payload].quantity + 1,
+      }
+      return { ...state, items: updated }
+    }
+    case 'DECREMENT_ITEM': {
+      const item = state.items[action.payload]
+      if (item.quantity <= 1) {
+        return { ...state, items: state.items.filter((_, i) => i !== action.payload) }
+      }
+      const updated = [...state.items]
+      updated[action.payload] = { ...item, quantity: item.quantity - 1 }
+      return { ...state, items: updated }
+    }
     case 'REMOVE_ITEM':
       return {
         ...state,
@@ -38,6 +55,8 @@ export function CartProvider({ children }) {
   const [state, dispatch] = useReducer(cartReducer, { items: [] })
 
   const addItem = useCallback(item => dispatch({ type: 'ADD_ITEM', payload: item }), [])
+  const incrementItem = useCallback(index => dispatch({ type: 'INCREMENT_ITEM', payload: index }), [])
+  const decrementItem = useCallback(index => dispatch({ type: 'DECREMENT_ITEM', payload: index }), [])
   const removeItem = useCallback(index => dispatch({ type: 'REMOVE_ITEM', payload: index }), [])
   const clearCart = useCallback(() => dispatch({ type: 'CLEAR_CART' }), [])
 
@@ -45,7 +64,7 @@ export function CartProvider({ children }) {
   const totalPrice = state.items.reduce((sum, item) => sum + item.price * item.quantity, 0)
 
   return (
-    <CartContext.Provider value={{ items: state.items, totalItems, totalPrice, addItem, removeItem, clearCart }}>
+    <CartContext.Provider value={{ items: state.items, totalItems, totalPrice, addItem, incrementItem, decrementItem, removeItem, clearCart }}>
       {children}
     </CartContext.Provider>
   )

@@ -42,6 +42,8 @@
     "empty": "El carrito está vacío",
     "total": "Total",
     "remove": "Eliminar",
+    "decrease": "Reducir cantidad de",
+    "increase": "Aumentar cantidad de",
     "added": "{{name}} añadido al carrito",
     "continueShopping": "Seguir comprando",
     "pay": "Pagar"

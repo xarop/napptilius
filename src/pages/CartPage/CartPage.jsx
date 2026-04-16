@@ -9,6 +9,9 @@ import {
   ItemInfo,
   ItemName,
   ItemVariant,
+  QtyControl,
+  QtyButton,
+  QtyValue,
   ItemPrice,
   RemoveButton,
   Footer,
@@ -21,7 +24,7 @@ import {
 
 function CartPage() {
   const { t } = useTranslation()
-  const { items, totalItems, totalPrice, removeItem } = useCart()
+  const { items, totalItems, totalPrice, removeItem, incrementItem, decrementItem } = useCart()
 
   return (
     <>
@@ -50,7 +53,22 @@ function CartPage() {
                 <ItemVariant>
                   {item.selectedStorage} | {item.selectedColor}
                 </ItemVariant>
-                <ItemPrice>{item.price} EUR</ItemPrice>
+                <QtyControl>
+                  <QtyButton
+                    onClick={() => decrementItem(index)}
+                    aria-label={`${t('cart.decrease')} ${item.name}`}
+                  >
+                    −
+                  </QtyButton>
+                  <QtyValue>{item.quantity}</QtyValue>
+                  <QtyButton
+                    onClick={() => incrementItem(index)}
+                    aria-label={`${t('cart.increase')} ${item.name}`}
+                  >
+                    +
+                  </QtyButton>
+                </QtyControl>
+                <ItemPrice>{(item.price * item.quantity).toFixed(2)} EUR</ItemPrice>
                 <RemoveButton
                   onClick={() => removeItem(index)}
                   aria-label={`${t('cart.remove')} ${item.name}`}

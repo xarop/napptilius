@@ -79,8 +79,39 @@ export const ItemVariant = styled.p`
   margin-bottom: var(--spacing-sm);
 `
 
+export const QtyControl = styled.div`
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  margin-top: var(--spacing-sm);
+`
+
+export const QtyButton = styled.button`
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--color-grey-300);
+  font-size: var(--fs-md);
+  line-height: 1;
+  transition: background var(--transition-fast), color var(--transition-fast);
+
+  &:hover {
+    background: var(--color-black);
+    color: var(--color-white);
+  }
+`
+
+export const QtyValue = styled.span`
+  font-size: var(--fs-body);
+  min-width: 20px;
+  text-align: center;
+`
+
 export const ItemPrice = styled.p`
   font-size: var(--fs-md);
+  margin-top: var(--spacing-sm);
 `
 
 export const RemoveButton = styled.button`
