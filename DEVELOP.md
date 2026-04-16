@@ -74,6 +74,7 @@ The app uses **React Context API** with two contexts:
 - **Styled Components v6** – component-scoped styles.
 - **CSS Custom Properties** – design tokens declared in `:root` via `GlobalStyles.js` for easy theming.
 - **Mobile-first** responsive grid: 2 → 3 → 4 → 5 columns.
+- **`@formkit/auto-animate`** – FLIP animations on the phone grid. When a search query changes, items animate in/out and reposition automatically (no manual keyframes needed). Applied via `useAutoAnimate()` ref on `<Grid>` in `PhoneList`.
 
 ## Internationalisation
 
