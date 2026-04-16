@@ -102,6 +102,8 @@ export const Footer = styled.div`
   right: 0;
   display: flex;
   flex-wrap: wrap;
+  column-gap: var(--spacing-md);
+  padding: 0 var(--spacing-md) var(--spacing-md);
   background: var(--color-white);
   border-top: 1px solid var(--color-grey-200);
   z-index: var(--z-footer);
@@ -110,6 +112,8 @@ export const Footer = styled.div`
     flex-wrap: nowrap;
     align-items: stretch;
     min-height: 72px;
+    column-gap: 0;
+    padding: 0;
   }
 `
 
@@ -120,7 +124,7 @@ export const ContinueButton = styled(Link)`
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: var(--spacing-md);
+  padding: var(--spacing-md) var(--spacing-sm);
   border: 1px solid var(--color-black);
   font-size: var(--fs-xs);
   font-weight: var(--fw-bold);
@@ -152,7 +156,7 @@ export const TotalSection = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: var(--spacing-md);
+  padding: var(--spacing-md) 0;
   border-bottom: 1px solid var(--color-grey-200);
 
   /* desktop: right side, flex-grow */
@@ -182,7 +186,7 @@ export const PayButton = styled.button`
   /* mobile: second row, right half */
   order: 3;
   flex: 1;
-  padding: var(--spacing-md);
+  padding: var(--spacing-md) var(--spacing-sm);
   background: var(--color-black);
   color: var(--color-white);
   font-size: var(--fs-xs);

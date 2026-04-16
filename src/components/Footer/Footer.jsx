@@ -8,7 +8,7 @@ function Footer() {
       <span>© {year} Napptilius</span>
       <span aria-hidden="true"> · </span>
       <span>
-        Developed by{' '}
+        Developed in Barcelona by{' '}
         <a href="https://xarop.com" target="_blank" rel="noopener noreferrer">
           xarop.com
         </a>
