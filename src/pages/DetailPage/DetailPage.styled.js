@@ -159,7 +159,8 @@ export const StorageOptions = styled.div`
 `
 
 export const StorageButton = styled.button`
-  flex: 1;
+  flex: 0 0 95px;
+  width: 95px;
   padding: 12px 8px;
   font-size: var(--fs-body);
   font-weight: var(--fw-light);
