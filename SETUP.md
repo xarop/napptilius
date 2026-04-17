@@ -17,7 +17,7 @@
 | Tool | Version |
 |---|---|
 | Node.js | ≥ 18 |
-| npm | ≥ 9 |
+| Bun | ≥ 1.0 (or npm ≥ 9) |
 | Git | any |
 
 ## Installation
@@ -28,7 +28,7 @@ git clone https://github.com/xarop/napptilius.git
 cd napptilius
 
 # 2. Install dependencies
-npm install
+bun install          # or: npm install
 
 # 3. (Optional) Create environment file
 cp .env.example .env
@@ -36,7 +36,7 @@ cp .env.example .env
 # VITE_API_KEY=your_key_here
 
 # 4. Start development server
-npm run dev
+bun run dev
 ```
 
 The app will be available at **http://localhost:5173**
@@ -50,22 +50,22 @@ The app will be available at **http://localhost:5173**
 ## Production Build
 
 ```bash
-npm run build     # Builds to ./dist
-npm run preview   # Serves the ./dist folder locally
+bun run build     # Builds to ./dist
+bun run preview   # Serves the ./dist folder locally
 ```
 
 ## Running Tests
 
 ```bash
-npm test                 # Run all tests once
-npm run test:watch       # Watch mode
-npm run test:coverage    # With coverage report (./coverage/)
+bun run test                 # Run all tests once
+bun run test:watch           # Watch mode
+bun run test:coverage        # With coverage report (./coverage/)
 ```
 
 ## Linting & Formatting
 
 ```bash
-npm run lint             # ESLint (zero warnings allowed)
-npm run format           # Prettier – write changes
-npm run format:check     # Prettier – check only (CI-safe)
+bun run lint             # ESLint (zero warnings allowed)
+bun run format           # Prettier – write changes
+bun run format:check     # Prettier – check only (CI-safe)
 ```

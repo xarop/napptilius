@@ -14,9 +14,10 @@ Single-page application that fetches a list of smartphones from a REST API, allo
 
 ## Features
 
-- 📋 **Phone list** with real-time search filter, sticky search bar and shimmer skeleton cards
-- 🔍 **Detail page** with specs table, color & storage selectors, similar items strip and skeleton loading layout
-- 🛒 **Cart page** with item management and responsive footer
+- 📋 **Phone list** with real-time search filter, sticky search bar, shimmer skeleton cards and animated grid reordering
+- 🔍 **Detail page** with specs table, color & storage selectors (first color pre-selected), similar items strip and skeleton loading layout
+- 🛒 **Cart page** with item management, quantity controls and responsive footer
+- ✅ **Order confirmation** page after checkout
 - 🌓 **Dark mode** toggle
 - 🌍 **Multilingual** – English / Spanish / Catalan
 - ♿ **Accessible** – ARIA roles, skip navigation, keyboard support
@@ -35,6 +36,7 @@ Single-page application that fetches a list of smartphones from a REST API, allo
 | Routing | React Router v7 |
 | State | React Context API + useReducer |
 | Styling | Styled Components v6 + CSS Variables |
+| Animations | @formkit/auto-animate |
 | i18n | i18next + react-i18next |
 | Testing | Vitest + Testing Library |
 | Linting | ESLint 9 + Prettier 3 |
@@ -79,24 +81,25 @@ bun run test:coverage # Run tests with coverage
 src/
 ├── components/
 │   ├── Breadcrumb/
-│   ├── Cart/           # CartDrawer
+│   ├── Cart/              # CartDrawer (slide-in)
 │   ├── Footer/
 │   ├── Header/
 │   ├── LanguageSelector/
 │   ├── NotFound/
 │   ├── PhoneCard/
-│   ├── PhoneList/
+│   ├── PhoneList/         # Grid with FLIP animations
 │   ├── SearchBar/
 │   ├── SimilarItems/
 │   └── ThemeToggle/
-├── context/            # CartContext, PhoneContext, ThemeContext
-├── i18n/               # Translations (es, ca, en)
+├── context/               # CartContext, PhoneContext, ThemeContext
+├── i18n/                  # Translations (es, ca, en)
 ├── pages/
 │   ├── CartPage/
 │   ├── DetailPage/
-│   └── HomePage/
-├── services/           # API layer with in-memory cache
-└── styles/             # GlobalStyles (CSS variables), theme
+│   ├── HomePage/
+│   └── OrderConfirmationPage/
+├── services/              # API layer with in-memory cache
+└── styles/                # GlobalStyles (CSS variables), theme
 ```
 
 ---

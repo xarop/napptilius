@@ -7,6 +7,7 @@
   - [Architecture](#architecture)
   - [State Management](#state-management)
   - [API \& Caching](#api--caching)
+  - [Loading UX](#loading-ux)
   - [Styling](#styling)
   - [Internationalisation](#internationalisation)
   - [Accessibility](#accessibility)
@@ -22,30 +23,37 @@
 ```
 src/
 ├── components/       # Presentational / smart UI components
-│   ├── Header/       # Sticky header, search bar, language, cart button
-│   ├── SearchBar/    # Controlled search input (reads PhoneContext)
-│   ├── PhoneCard/    # Individual phone card (link to detail)
-│   ├── PhoneList/    # Grid list with loading skeletons & error state
-│   ├── Cart/         # Slide-in cart drawer
+│   ├── Breadcrumb/       # Breadcrumb navigation
+│   ├── Cart/             # Slide-in cart drawer (role="dialog")
+│   ├── Footer/           # Site footer
+│   ├── Header/           # Sticky header, search bar, language, cart button
 │   ├── LanguageSelector/ # Dropdown to switch i18n language
-│   └── NotFound/     # 404 page
+│   ├── NotFound/         # 404 page
+│   ├── PhoneCard/        # Individual phone card (link to detail)
+│   ├── PhoneList/        # Grid list with loading skeletons, FLIP animations & error state
+│   ├── SearchBar/        # Controlled search input (reads PhoneContext)
+│   ├── SimilarItems/     # Horizontal strip of phones in a similar price range
+│   └── ThemeToggle/      # Light / dark mode button
 ├── context/
-│   ├── CartContext.jsx   # Cart state via useReducer
-│   └── PhoneContext.jsx  # Phone list + search state
+│   ├── CartContext.jsx       # Cart state via useReducer
+│   ├── PhoneContext.jsx      # Phone list + search state
+│   └── ThemeContext.jsx      # Dark / light theme toggle
 ├── i18n/
-│   ├── index.js          # i18next init + lang persistence
+│   ├── index.js              # i18next init + lang persistence
 │   └── locales/
 │       ├── es.json
 │       ├── ca.json
 │       └── en.json
 ├── pages/
-│   ├── HomePage/         # Route "/" – renders PhoneList
-│   └── DetailPage/       # Route "/phones/:id"
+│   ├── CartPage/             # Route "/cart"
+│   ├── DetailPage/           # Route "/phones/:id"
+│   ├── HomePage/             # Route "/" – renders PhoneList
+│   └── OrderConfirmationPage/ # Route "/order-confirmation"
 ├── services/
-│   └── api.js            # Fetch wrapper with 1-hour in-memory cache
+│   └── api.js                # Fetch wrapper with 1-hour in-memory cache
 └── styles/
-    ├── GlobalStyles.js   # Styled-components global + CSS variables
-    └── theme.js          # Design tokens (colors, spacing, etc.)
+    ├── GlobalStyles.js       # Styled-components global + CSS variables
+    └── theme.js              # Design tokens (colors, spacing, etc.)
 ```
 
 ## State Management

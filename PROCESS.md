@@ -182,6 +182,28 @@ Improved perceived performance and user feedback during API cold starts (the Ren
 
 ---
 
+### Phase 10 – Search Animations
+
+Added **`@formkit/auto-animate`** for automatic FLIP animations on the phone grid:
+
+| Change | File | Detail |
+|---|---|---|
+| Install package | `package.json` | `@formkit/auto-animate` |
+| Apply `useAutoAnimate()` | `PhoneList.jsx` | `ref` attached to `<Grid>` — items fade-in/out and slide to their new position on every search query change |
+
+No manual keyframes or CSS transitions needed. The library uses the FLIP technique internally.
+
+---
+
+### Phase 11 – Detail Page & Cart Refinements
+
+| Change | File | Detail |
+|---|---|---|
+| Pre-select first color | `DetailPage.jsx` | `setSelectedColor(data.colorOptions?.[0]?.hexCode)` called when phone data loads — the first swatch (matching the displayed image) is selected by default |
+| Cart H1 typography | `CartPage.styled.js` | `Title` updated to Helvetica Neue 300 weight, 24 px, line-height 100%, letter-spacing 0, uppercase — matching the Figma specification |
+
+---
+
 ### Why Vitest over Jest?
 Vite uses native ESM. Jest needs Babel or complex transform config to handle ESM imports. Vitest integrates natively, runs in the same Vite environment, and needs zero extra config.
 
@@ -206,9 +228,9 @@ The `document.documentElement.lang` attribute is updated whenever the user switc
 - **End-to-end tests** with Playwright.
 - **PWA** – service worker + manifest for offline support.
 - **SSR with Next.js** (optional challenge item) for better SEO.
-- **Animations** – page transitions with Framer Motion.
-- **GitHub Actions CI** – run lint + test on every PR.
-- **Deployment** – Vercel or Netlify with preview URLs per branch.
+- **Page transitions** – route-level enter/exit animations with Framer Motion.
+- **GitHub Actions CI** – run lint + test on every PR (deploy workflow already in place).
+- **Cart persistence** – sync cart to `localStorage` so it survives page refresh.
 
 ---
 
