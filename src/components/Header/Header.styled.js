@@ -88,5 +88,9 @@ export const CartButton = styled.button`
 
 export const CartBadge = styled.span`
   font-size: var(--fs-base);
+  font-weight: var(--fw-regular);
   color: var(--color-black);
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
 `
