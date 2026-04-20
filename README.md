@@ -54,6 +54,34 @@ Base URL: `https://prueba-tecnica-api-tienda-moviles.onrender.com`
 
 Authentication via `x-api-key` header – set `VITE_API_KEY` in `.env`.
 
+## Backend BFF (optional)
+
+A Node.js / Express backend lives in `backend/` and provides:
+
+- **Image processing** – removes white backgrounds (BFS flood-fill), crops, resizes to 400 px height and converts to WebP (quality 85) via Sharp.
+- **API proxy** – forwards `/api/products` to the upstream, hides the API key, deduplicates responses, fixes inconsistent prices, rewrites image URLs to `/api/image?url=...`.
+- **LRU image cache** – 50 entries; processed images are served with `Cache-Control: immutable`.
+
+When `VITE_API_BASE_URL` is set, the frontend routes all requests through the BFF instead of the upstream directly.
+
+### Running the backend locally
+
+```bash
+bun run backend:install   # Install backend deps once
+bun run backend:dev       # Start on http://localhost:3001
+```
+
+### Deploying the backend
+
+GitHub Pages is static-only — the backend must be hosted on a server (e.g. [Render](https://render.com) free tier):
+
+1. Push the `backend/` folder to your repo.
+2. Create a new **Web Service** on Render pointing to `backend/` with start command `node src/server.js`.
+3. Set env vars `API_KEY`, `CORS_ORIGIN` (your GitHub Pages URL) on Render.
+4. Add a GitHub repo **variable** `VITE_API_BASE_URL` = `https://<your-render-service>.onrender.com` — the deploy workflow injects it automatically at build time.
+
+Leave `VITE_API_BASE_URL` unset to fall back to the upstream API (no image processing).
+
 ## Quick Start
 
 ```bash

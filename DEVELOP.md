@@ -67,8 +67,49 @@ The app uses **React Context API** with two contexts:
 
 `src/services/api.js` wraps `fetch` with:
 - **In-memory cache** (Map) with 1-hour TTL – avoids re-fetching on navigation.
-- **x-api-key** header injected from `VITE_API_KEY` env var.
+- **`VITE_API_BASE_URL`** env var selects the target: if set to `/api` (dev proxy) or a deployed BFF URL, all requests route through the backend; otherwise falls back to the upstream directly.
+- **x-api-key** header injected only when calling the upstream directly (suppressed for BFF calls).
 - Endpoints: `GET /products`, `GET /products/:id`.
+
+## Backend BFF
+
+An optional Express backend in `backend/` sits between the frontend and the upstream API:
+
+```
+backend/
+├── package.json
+├── .env                       # PORT, API_KEY, UPSTREAM_API_URL, CORS_ORIGIN
+└── src/
+    ├── server.js              # Express app, CORS, mounts routers
+    ├── config.js              # env-based config (dotenv)
+    └── features/
+        ├── image/
+        │   ├── image.cache.js      # LRU Map, 50 entries
+        │   ├── image.processor.js  # Sharp pipeline (BFS + trim + resize + WebP)
+        │   └── image.router.js     # GET /api/image?url=<encoded>
+        └── products/
+            ├── products.cache.js   # TTL 5-min Map cache
+            └── products.router.js  # GET /api/products (proxy + dedup + price fix + image URL rewrite)
+```
+
+### Image pipeline (`image.processor.js`)
+
+1. Fetch upstream image over HTTPS.
+2. BFS flood-fill from border pixels — marks all corner-adjacent white/near-white pixels (R,G,B ≥ 240) as transparent.
+3. Sharp pipeline: `ensureAlpha()` → raw RGBA decode → BFS transparency → `trim()` → `resize({height:400})` → `webp({quality:85})`.
+4. Concurrency limiter (MAX_CONCURRENT_SHARP = 3) prevents libuv thread-pool saturation.
+5. Result stored in LRU cache (50 entries); served with `Cache-Control: public, max-age=31536000, immutable`.
+
+### Products proxy (`products.router.js`)
+
+- Calls upstream `GET /products` and `GET /products/:id` in parallel to correct inconsistent `basePrice`.
+- Deduplicates by `id`, adds a `renderKey` for React.
+- Rewrites all `imageUrl` fields to `/api/image?url=<encoded>` so the frontend loads processed images transparently.
+- After responding, fires `preloadImages()` in the background with concurrency 3.
+
+### SSRF guard
+
+`image.router.js` validates that the `url` query param starts with `https://` before fetching — prevents Server-Side Request Forgery.
 
 ## Loading UX
 

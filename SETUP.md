@@ -43,9 +43,21 @@ The app will be available at **http://localhost:5173**
 
 ## Environment Variables
 
+### Frontend (`.env`)
+
 | Variable | Required | Description |
 |---|---|---|
-| `VITE_API_KEY` | No | API key for `x-api-key` header. Leave empty if not needed. |
+| `VITE_API_KEY` | No | API key for `x-api-key` header (direct upstream calls only). |
+| `VITE_API_BASE_URL` | No | Set to `/api` in dev (routes through BFF proxy) or to the deployed backend URL in production. Leave empty to call the upstream API directly. |
+
+### Backend (`backend/.env`)
+
+| Variable | Default | Description |
+|---|---|---|
+| `PORT` | `3001` | Port the Express server listens on. |
+| `API_KEY` | — | API key forwarded to the upstream. |
+| `UPSTREAM_API_URL` | upstream URL | Base URL of the upstream REST API. |
+| `CORS_ORIGIN` | `http://localhost:5173` | Comma-separated allowed origins. |
 
 ## Production Build
 
@@ -53,6 +65,26 @@ The app will be available at **http://localhost:5173**
 bun run build     # Builds to ./dist
 bun run preview   # Serves the ./dist folder locally
 ```
+
+## Backend (optional)
+
+```bash
+# Install backend dependencies (once)
+bun run backend:install   # or: cd backend && npm install
+
+# Start backend dev server (port 3001)
+bun run backend:dev
+
+# Copy and fill in backend env vars
+cp backend/.env.example backend/.env
+```
+
+The backend exposes:
+- `GET /api/products` – proxied + processed product list
+- `GET /api/image?url=<encoded>` – processed WebP image
+
+In dev, the Vite proxy forwards `/api` → `http://localhost:3001` automatically.  
+Set `VITE_API_BASE_URL=/api` in your frontend `.env` to route through the BFF.
 
 ## Running Tests
 

@@ -1,5 +1,18 @@
-const BASE_URL = 'https://prueba-tecnica-api-tienda-moviles.onrender.com'
-const API_KEY = import.meta.env.VITE_API_KEY || '87909682e6cd74208f41a6ef39fe4191'
+/**
+ * API base URL.
+ * - Leave unset (or set to the upstream URL) for standalone / GitHub Pages.
+ * - Set VITE_API_BASE_URL=/api to route calls through the local BFF backend,
+ *   which hides the API key and processes images via Sharp.
+ * When the BFF is unavailable, calls automatically fall back to the upstream.
+ */
+const UPSTREAM_URL = 'https://prueba-tecnica-api-tienda-moviles.onrender.com'
+const UPSTREAM_KEY = import.meta.env.VITE_API_KEY || '87909682e6cd74208f41a6ef39fe4191'
+
+const BASE_URL = import.meta.env.VITE_API_BASE_URL || UPSTREAM_URL
+
+// Only attach the API key when calling the upstream directly (not the BFF).
+const isBFF = BASE_URL.startsWith('/')
+const API_KEY = isBFF ? null : UPSTREAM_KEY
 
 const CACHE_TTL = 60 * 60 * 1000 // 1 hour in ms
 const cache = new Map()
@@ -26,9 +39,31 @@ async function request(endpoint) {
   const headers = { 'Content-Type': 'application/json' }
   if (API_KEY) headers['x-api-key'] = API_KEY
 
-  const response = await fetch(`${BASE_URL}${endpoint}`, { headers })
+  let response
+  try {
+    response = await fetch(`${BASE_URL}${endpoint}`, { headers })
+  } catch {
+    // BFF unreachable – fall back to upstream
+    if (isBFF) {
+      response = await fetch(`${UPSTREAM_URL}${endpoint}`, {
+        headers: { 'Content-Type': 'application/json', 'x-api-key': UPSTREAM_KEY },
+      })
+    } else {
+      throw new Error('Network error')
+    }
+  }
 
   if (!response.ok) {
+    // BFF returned an error – fall back to upstream
+    if (isBFF) {
+      const fallback = await fetch(`${UPSTREAM_URL}${endpoint}`, {
+        headers: { 'Content-Type': 'application/json', 'x-api-key': UPSTREAM_KEY },
+      })
+      if (!fallback.ok) throw new Error(`API error: ${fallback.status} ${fallback.statusText}`)
+      const data = await fallback.json()
+      setCache(cacheKey, data)
+      return data
+    }
     throw new Error(`API error: ${response.status} ${response.statusText}`)
   }
 

@@ -1,0 +1,20 @@
+services:
+  - type: web
+    name: napptilius
+    runtime: node
+    # Build: install all deps, compile frontend into dist/, install backend deps
+    buildCommand: >
+      npm install &&
+      VITE_BASE_PATH=/ VITE_API_BASE_URL=/api npx vite build &&
+      cd backend && npm install
+    # Start: Express serves dist/ as static + /api/* routes
+    startCommand: node backend/src/server.js
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: API_KEY
+        sync: false        # Set manually in Render dashboard
+      - key: CORS_ORIGIN
+        value: same-origin # Same-origin – CORS not required for frontend calls
+      - key: PORT
+        value: 10000       # Render assigns this automatically; Express reads it

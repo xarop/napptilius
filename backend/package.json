@@ -1,0 +1,19 @@
+{
+    "name": "napptilius-backend",
+    "version": "1.0.0",
+    "description": "BFF – proxies the upstream API, hides the API key and processes images with Sharp",
+    "type": "module",
+    "engines": {
+        "node": ">=18"
+    },
+    "scripts": {
+        "dev": "node --watch src/server.js",
+        "start": "node src/server.js"
+    },
+    "dependencies": {
+        "cors": "^2.8.5",
+        "dotenv": "^16.4.7",
+        "express": "^4.19.2",
+        "sharp": "^0.33.4"
+    }
+}

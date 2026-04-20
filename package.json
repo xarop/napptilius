@@ -23,7 +23,11 @@
   },
   "scripts": {
     "dev": "vite",
+    "backend:install": "cd backend && npm install",
+    "backend:dev": "cd backend && node --watch src/server.js",
     "build": "vite build",
+    "build:fullstack": "VITE_BASE_PATH=/ VITE_API_BASE_URL=/api vite build",
+    "start": "node backend/src/server.js",
     "preview": "vite preview",
     "lint": "eslint src --ext .js,.jsx --report-unused-disable-directives --max-warnings 0",
     "format": "prettier --write \"src/**/*.{js,jsx,json}\"",

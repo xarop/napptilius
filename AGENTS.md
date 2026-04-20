@@ -18,7 +18,15 @@ bun run format            # Prettier – write
 bun run format:check      # Prettier – CI-safe check
 ```
 
-Requires `VITE_API_KEY` in `.env` (see [SETUP.md](./SETUP.md)).
+## Backend
+
+```bash
+bun run backend:install   # Install backend deps (once)
+bun run backend:dev       # Start Express BFF on http://localhost:3001
+```
+
+Backend lives in `backend/`. Requires `backend/.env` (copy from `backend/.env.example`).  
+Set `VITE_API_BASE_URL=/api` in the frontend `.env` to route through the BFF in dev.
 
 ---
 

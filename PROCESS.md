@@ -204,6 +204,25 @@ No manual keyframes or CSS transitions needed. The library uses the FLIP techniq
 
 ---
 
+### Phase 12 – Backend BFF & Image Processing
+
+A full Express BFF (`backend/`) was added to improve image quality and protect the API key in production.
+
+| Area | Detail |
+|---|---|
+| **Image pipeline** | BFS flood-fill removes white/near-white backgrounds (threshold R,G,B ≥ 240) seeded from all border pixels. Sharp then trims, resizes to 400 px height, and encodes as WebP quality 85. |
+| **Concurrency limiter** | `MAX_CONCURRENT_SHARP = 3` queues Sharp calls to prevent libuv thread-pool saturation under load. |
+| **LRU cache** | Processed images stored in a 50-entry LRU Map; served with `Cache-Control: public, max-age=31536000, immutable`. |
+| **Products proxy** | Upstream products fetched, deduplicated by ID, with `basePrice` corrected via parallel `/products/:id` calls. All `imageUrl` fields rewritten to `/api/image?url=…`. |
+| **Background preload** | After `/api/products` responds, all image URLs are preloaded into the cache concurrently (limit 3). |
+| **SSRF guard** | `image.router.js` validates `url` starts with `https://` before fetching. |
+| **Frontend wiring** | `api.js` reads `VITE_API_BASE_URL`; `isBFF` flag suppresses `x-api-key` header when routing through the BFF. |
+| **Vite proxy** | Dev server proxies `/api` → `http://localhost:3001` so no CORS issues locally. |
+| **GitHub Actions** | `deploy.yml` injects `VITE_API_BASE_URL` from a GitHub repo variable at build time — set to the deployed backend URL to enable image processing in production. |
+| **Deployment** | GitHub Pages (frontend) + Render free tier (backend). Backend env vars: `API_KEY`, `CORS_ORIGIN`, `PORT`. |
+
+---
+
 ### Why Vitest over Jest?
 Vite uses native ESM. Jest needs Babel or complex transform config to handle ESM imports. Vitest integrates natively, runs in the same Vite environment, and needs zero extra config.
 

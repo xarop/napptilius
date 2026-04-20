@@ -203,7 +203,7 @@ function DetailPage() {
             <PriceTag>{!selectedStorage && `${t('common.from')} `}{currentPrice} EUR</PriceTag>
           </TitleBlock>
 
-          <Divider />
+          {/* <Divider /> */}
 
           {phone.storageOptions?.length > 0 && (
             <div>

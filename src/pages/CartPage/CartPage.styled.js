@@ -33,11 +33,11 @@ export const CartItem = styled.article`
   grid-template-columns: 200px 1fr;
   gap: var(--spacing-xl);
   padding: var(--spacing-xl) 0;
-  border-bottom: 1px solid var(--color-grey-200);
+  // border-bottom: 1px solid var(--color-grey-200);
 
-  &:first-child {
-    border-top: 1px solid var(--color-grey-200);
-  }
+  // &:first-child {
+  //   border-top: 1px solid var(--color-grey-200);
+  // }
 
   @media (max-width: 768px) {
     grid-template-columns: 120px 1fr;

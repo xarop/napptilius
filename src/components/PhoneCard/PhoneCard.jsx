@@ -18,6 +18,16 @@ function PhoneCard({ phone }) {
           style={{ opacity: imgLoaded ? 1 : 0 }}
           onLoad={() => setImgLoaded(true)}
           onError={e => {
+            // If image came from the BFF proxy (/api/image?url=...), extract
+            // the original URL and fall back to it when the backend is down.
+            try {
+              const proxied = new URL(e.target.src, window.location.origin)
+              const original = proxied.searchParams.get('url')
+              if (original && e.target.src !== original) {
+                e.target.src = original
+                return
+              }
+            } catch {}
             e.target.style.display = 'none'
           }}
         />
