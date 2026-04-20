@@ -1,6 +1,6 @@
 # Napptilius – Smartphone Catalog
+> This project is a response to the [Zara Web Challenge](./RETO.md) — see the file for the original spec and a full implementation checklist.
 
-> Zara Web Challenge · Frontend Technical Test
 
 A responsive, accessible, multilingual smartphone catalog built with React, Styled Components and React Context API.
 
@@ -100,6 +100,7 @@ bun run dev        # http://localhost:5173
 ```
 
 See [SETUP.md](./SETUP.md) for detailed setup and [DEVELOP.md](./DEVELOP.md) for contributing guidelines.
+
 
 ## Scripts
 

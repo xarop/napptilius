@@ -88,4 +88,48 @@ Todas las solicitudes a la API deben estar autenticadas. Para ello, es necesario
 ## CONTACTO
 Si tienes dudas o necesitas aclaraciones, no dudes en contactarnos a través del correo: ddfrontendzara.com@inditex.com.
 
+---
+
+## CHECKLIST DE IMPLEMENTACIÓN
+
+### Vista Listado de Teléfonos
+- [x] Grid con los 20 teléfonos de la API — imagen, nombre, marca y precio base
+- [x] Buscador en tiempo real por nombre/marca (con debounce 300 ms)
+- [x] Indicador del número de resultados
+- [x] Navegación con icono/enlace al home
+- [x] Navegación con icono + contador del carrito
+- [x] Carrito persistente con `localStorage`
+- [x] Click en tarjeta → redirige al detalle
+
+### Vista Detalle de Teléfono
+- [x] Nombre y marca del dispositivo
+- [x] Imagen grande que cambia al seleccionar color
+- [x] Selectores de almacenamiento y color con precio en tiempo real
+- [x] Especificaciones técnicas, precio base y variaciones por almacenamiento
+- [x] Botón "Añadir al carrito" desactivado hasta seleccionar color Y almacenamiento
+- [x] Sección de productos similares
+
+### Vista de Carrito
+- [x] Imagen, nombre, especificaciones seleccionadas y precio individual
+- [x] Botón eliminar producto individual
+- [x] Precio total
+- [x] Botón "Continuar comprando" → home
+
+### Diseño y técnico
+- [x] Font: `Helvetica, Arial, sans-serif`
+- [x] Diseño responsive (mobile-first)
+- [x] Modo desarrollo sin minificar / producción minificada (Vite)
+
+### Requisitos
+- [x] Implementación de pruebas (Vitest + React Testing Library)
+- [x] Aplicación responsive
+- [x] Accesibilidad (ARIA, skip nav, soporte teclado)
+- [x] Linters y formatters (ESLint + Prettier, 0 warnings)
+- [x] Consola libre de errores y advertencias
+- [x] README detallado
+
+### Opcional
+- [x] Despliegue (Render + GitHub Pages)
+- [x] Variables CSS (sistema completo de tokens)
+- [ ] SSR con Next.js *(no aplicable — el proyecto usa React SPA puro)*
 
