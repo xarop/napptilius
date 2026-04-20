@@ -1,6 +1,7 @@
 import { createContext, useContext, useState, useCallback, useEffect, useMemo } from 'react'
 import PropTypes from 'prop-types'
 import phonesApi from '../services/api'
+import { useDebounce } from '../hooks/useDebounce'
 
 const PhoneContext = createContext(null)
 
@@ -9,6 +10,7 @@ export function PhoneProvider({ children }) {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
   const [searchQuery, setSearchQuery] = useState('')
+  const debouncedQuery = useDebounce(searchQuery, 300)
 
   const fetchPhones = useCallback(async () => {
     setLoading(true)
@@ -28,7 +30,7 @@ export function PhoneProvider({ children }) {
   }, [fetchPhones])
 
   const filteredPhones = useMemo(() => {
-    const q = searchQuery.trim().toLowerCase()
+    const q = debouncedQuery.trim().toLowerCase()
     if (q.length < 2) return phones
     const words = q.split(/\s+/).filter(w => w.length >= 2)
     if (words.length === 0) return phones
@@ -37,7 +39,7 @@ export function PhoneProvider({ children }) {
       const name = phone.name?.toLowerCase() ?? ''
       return words.every(w => brand.includes(w) || name.includes(w))
     })
-  }, [phones, searchQuery])
+  }, [phones, debouncedQuery])
 
   return (
     <PhoneContext.Provider

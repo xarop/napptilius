@@ -138,6 +138,14 @@ src/
 └── styles/                # GlobalStyles (CSS variables), theme
 ```
 
+## Future Improvements
+
+- **E2E Testing** – Playwright tests for critical user flows (search, add to cart, checkout).
+- **Unit Testing** – Expand Vitest coverage to include filtering logic, cart reducer edge cases and hook behaviour.
+- **CI/CD** – GitHub Actions workflow for lint + test + build on every PR, with auto-deploy to Render on merge to `main`.
+- **Virtualised list** – `@tanstack/react-virtual` for the phone grid when the catalogue grows beyond a few hundred items.
+- **PWA / offline** – Service worker + `vite-plugin-pwa` so the catalogue is browsable without a network connection.
+
 ---
 
 ## License
