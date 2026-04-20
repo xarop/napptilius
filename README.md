@@ -56,6 +56,8 @@ Base URL: `https://prueba-tecnica-api-tienda-moviles.onrender.com`
 
 Authentication via `x-api-key` header – set `VITE_API_KEY` in `.env`.
 
+> **Note on search filtering:** The challenge spec says *"use API filtering"*, but the upstream API does not expose any search or filter parameter on `GET /products` — it always returns the full catalogue. Filtering is therefore performed client-side in `PhoneContext` using a debounced `useMemo` over the cached product list. This is the correct and expected approach given the API constraints.
+
 ## Backend BFF (optional)
 
 A Node.js / Express backend lives in `backend/` and provides:
