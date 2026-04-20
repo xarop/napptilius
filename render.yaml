@@ -2,6 +2,7 @@ services:
   - type: web
     name: napptilius
     runtime: node
+    plan: free
     # Build: install all deps, compile frontend into dist/, install backend deps
     buildCommand: >
       npm install &&
