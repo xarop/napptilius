@@ -15,6 +15,7 @@ app.use(cors({ origin: config.corsOrigin }))
 app.use(express.json())
 
 // ── API routes ─────────────────────────────────────────────────────────────
+app.get('/health', (_req, res) => res.json({ status: 'ok' }))
 app.use('/api/products', productsRouter)
 app.use('/api/image', imageRouter)
 
