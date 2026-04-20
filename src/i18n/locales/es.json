@@ -15,7 +15,9 @@
     "title": "Smartphones",
     "loading": "Cargando teléfonos...",
     "slowConnection": "El servidor está arrancando, puede tardar un momento…",
-    "error": "Error al cargar los teléfonos. Inténtalo de nuevo."
+    "error": "Error al cargar los teléfonos. Inténtalo de nuevo.",
+    "loadMore": "Ver más ({{count}} restantes)",
+    "showing": "Mostrando {{visible}} de {{total}} resultados"
   },
   "detail": {
     "loading": "Cargando detalles...",

@@ -14,15 +14,19 @@ import {
   SkeletonCard,
   SlowNotice,
   ErrorWrapper,
+  LoadMoreWrapper,
+  LoadMoreButton,
 } from './PhoneList.styled'
 
 const SKELETON_COUNT = 10
 const SLOW_THRESHOLD_MS = 6000
+const PAGE_SIZE = 20
 
 function PhoneList() {
   const { t } = useTranslation()
   const { filteredPhones, loading, error, searchQuery, fetchPhones } = usePhones()
   const [isSlow, setIsSlow] = useState(false)
+  const [displayCount, setDisplayCount] = useState(PAGE_SIZE)
   const [animationParent] = useAutoAnimate()
 
   useEffect(() => {
@@ -33,6 +37,10 @@ function PhoneList() {
     const timer = setTimeout(() => setIsSlow(true), SLOW_THRESHOLD_MS)
     return () => clearTimeout(timer)
   }, [loading])
+
+  useEffect(() => {
+    setDisplayCount(PAGE_SIZE)
+  }, [searchQuery])
 
   if (loading) {
     return (
@@ -78,22 +86,41 @@ function PhoneList() {
     )
   }
 
+  const visiblePhones = filteredPhones.slice(0, displayCount)
+  const hasMore = filteredPhones.length > displayCount
+
   return (
     <ListWrapper>
       <SearchSection>
         <SearchBar />
         <ResultsInfo aria-live="polite" aria-atomic="true">
-          {t('search.results', { count: filteredPhones.length })}
+          {hasMore
+            ? t('home.showing', { visible: displayCount, total: filteredPhones.length })
+            : t('search.results', { count: filteredPhones.length })}
         </ResultsInfo>
       </SearchSection>
 
       <Grid ref={animationParent} aria-label={t('home.title')}>
-        {filteredPhones.map(phone => (
+        {visiblePhones.map(phone => (
           <li key={phone.id}>
             <PhoneCard phone={phone} />
           </li>
         ))}
       </Grid>
+
+      {hasMore && (
+        <LoadMoreWrapper>
+          <ResultsInfo aria-live="polite">
+            {t('home.showing', { visible: displayCount, total: filteredPhones.length })}
+          </ResultsInfo>
+          <LoadMoreButton
+            type="button"
+            onClick={() => setDisplayCount(c => c + PAGE_SIZE)}
+          >
+            {t('home.loadMore', { count: filteredPhones.length - displayCount })}
+          </LoadMoreButton>
+        </LoadMoreWrapper>
+      )}
     </ListWrapper>
   )
 }

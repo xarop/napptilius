@@ -134,3 +134,28 @@ export const ErrorWrapper = styled.div`
     }
   }
 `
+
+export const LoadMoreWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-md);
+  padding: var(--spacing-2xl) 0 var(--spacing-lg);
+  border-top: 0.5px solid var(--color-black);
+`
+
+export const LoadMoreButton = styled.button`
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-medium);
+  letter-spacing: var(--ls-md);
+  text-transform: uppercase;
+  color: var(--color-black);
+  padding: var(--spacing-sm) var(--spacing-xl);
+  border: 1px solid var(--color-black);
+  transition: background-color var(--transition-fast), color var(--transition-fast);
+
+  &:hover {
+    background-color: var(--color-black);
+    color: var(--color-white);
+  }
+`

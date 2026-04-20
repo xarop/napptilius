@@ -15,7 +15,7 @@ Single-page application that fetches a list of smartphones from a REST API, allo
 
 ## Features
 
-- 📋 **Phone list** with real-time search filter, sticky search bar, shimmer skeleton cards and animated grid reordering
+- 📋 **Phone list** with real-time search filter, sticky search bar, shimmer skeleton cards and animated grid reordering. The challenge spec requires showing 20 items — this implementation fetches the full catalogue and shows the first 20 with a **Load More** button to reveal any additional items
 - 🔍 **Detail page** with specs table, color & storage selectors (first color pre-selected), similar items strip and skeleton loading layout
 - 🛒 **Cart page** with item management, quantity controls and responsive footer
 - ✅ **Order confirmation** page after checkout

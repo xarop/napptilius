@@ -15,7 +15,9 @@
     "title": "Smartphones",
     "loading": "Carregant telèfons...",
     "slowConnection": "El servidor s'està iniciant, pot trigar un moment…",
-    "error": "Error en carregar els telèfons. Torna-ho a intentar."
+    "error": "Error en carregar els telèfons. Torna-ho a intentar.",
+    "loadMore": "Veure'n més ({{count}} restants)",
+    "showing": "Mostrant {{visible}} de {{total}} resultats"
   },
   "detail": {
     "loading": "Carregant detalls...",

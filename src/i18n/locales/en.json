@@ -15,7 +15,9 @@
     "title": "Smartphones",
     "loading": "Loading phones...",
     "slowConnection": "The server is waking up, this may take a moment…",
-    "error": "Failed to load phones. Please try again."
+    "error": "Failed to load phones. Please try again.",
+    "loadMore": "Load more ({{count}} remaining)",
+    "showing": "Showing {{visible}} of {{total}} results"
   },
   "detail": {
     "loading": "Loading details...",
