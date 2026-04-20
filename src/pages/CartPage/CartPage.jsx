@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { useCart } from '../../context/CartContext'
+import { useFormatPrice } from '../../hooks/useFormatPrice'
 import {
   PageWrapper,
   Title,
@@ -28,6 +29,7 @@ function CartPage() {
   const { t } = useTranslation()
   const navigate = useNavigate()
   const { items, totalItems, totalPrice, removeItem, incrementItem, decrementItem } = useCart()
+  const formatPrice = useFormatPrice()
 
   return (
     <>
@@ -77,7 +79,7 @@ function CartPage() {
                     +
                   </QtyButton>
                 </QtyControl>
-                <ItemPrice>{(item.price * item.quantity).toFixed(2)} EUR</ItemPrice>
+                <ItemPrice>{formatPrice(item.price * item.quantity)}</ItemPrice>
                 <RemoveButton
                   onClick={() => removeItem(index)}
                   aria-label={`${t('cart.remove')} ${item.name}`}
@@ -96,7 +98,7 @@ function CartPage() {
           <>
             <TotalSection>
               <TotalLabel>{t('cart.total')}</TotalLabel>
-              <TotalPrice>{totalPrice} EUR</TotalPrice>
+              <TotalPrice>{formatPrice(totalPrice)}</TotalPrice>
             </TotalSection>
             <PayButton aria-label={t('cart.pay')} onClick={() => navigate('/order-confirmation')}>{t('cart.pay')}</PayButton>
           </>

@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react'
 import PropTypes from 'prop-types'
 import { useTranslation } from 'react-i18next'
 import { useCart } from '../../context/CartContext'
+import { useFormatPrice } from '../../hooks/useFormatPrice'
 import {
   Overlay,
   Drawer,
@@ -35,6 +36,7 @@ function CloseIcon() {
 function CartDrawer({ isOpen, onClose }) {
   const { t } = useTranslation()
   const { items, totalItems, totalPrice, removeItem } = useCart()
+  const formatPrice = useFormatPrice()
   const closeRef = useRef(null)
 
   useEffect(() => {
@@ -115,7 +117,7 @@ function CartDrawer({ isOpen, onClose }) {
                       {item.selectedStorage}
                     </span>
                   )}
-                  <p>{item.price} EUR × {item.quantity}</p>
+                  <p>{formatPrice(item.price)} × {item.quantity}</p>
                   <RemoveButton onClick={() => removeItem(index)} aria-label={`${t('cart.remove')} ${item.name}`}>
                     {t('cart.remove')}
                   </RemoveButton>
@@ -129,7 +131,7 @@ function CartDrawer({ isOpen, onClose }) {
           <DrawerFooter>
             <TotalRow>
               <span>{t('cart.total')}</span>
-              <span>{totalPrice} EUR</span>
+              <span>{formatPrice(totalPrice)}</span>
             </TotalRow>
           </DrawerFooter>
         )}

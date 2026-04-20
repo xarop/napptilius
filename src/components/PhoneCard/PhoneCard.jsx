@@ -9,7 +9,7 @@ function PhoneCard({ phone }) {
   const [imgLoaded, setImgLoaded] = useState(false)
 
   return (
-    <Card to={`/phones/${id}`} aria-label={`${brand} ${name} – ${t('common.from')} ${basePrice} EUR`}>
+    <Card to={`/phones/${id}`} aria-label={`${brand} ${name} – ${basePrice} EUR`}>
       <ImageWrapper>
         <img
           src={imageUrl}
@@ -36,7 +36,7 @@ function PhoneCard({ phone }) {
         <Brand>{brand}</Brand>
         <NamePriceRow>
           <Name>{name}</Name>
-          <Price>{t('common.from')} {basePrice} EUR</Price>
+          <Price>{basePrice} EUR</Price>
         </NamePriceRow>
       </CardBody>
     </Card>

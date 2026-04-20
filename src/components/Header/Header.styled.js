@@ -87,7 +87,6 @@ export const CartButton = styled.button`
 `
 
 export const CartBadge = styled.span`
-  font-size: var(--fs-sm);
-  font-weight: var(--fw-regular);
+  font-size: var(--fs-base);
   color: var(--color-black);
 `

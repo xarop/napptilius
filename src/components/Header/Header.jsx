@@ -2,8 +2,6 @@ import { useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import { useCart } from '../../context/CartContext'
-import LanguageSelector from '../LanguageSelector/LanguageSelector'
-import ThemeToggle from '../ThemeToggle/ThemeToggle'
 import { StyledHeader, HeaderInner, Logo, Actions, CartButton, CartBadge } from './Header.styled'
 
 function LogoIcon() {
@@ -60,9 +58,6 @@ function Header() {
         </Logo>
 
         <Actions>
-          <ThemeToggle />
-          <LanguageSelector />
-
           <CartButton
             as={Link}
             to="/cart"

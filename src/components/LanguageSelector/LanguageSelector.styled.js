@@ -1,52 +1,29 @@
 import styled from 'styled-components'
 
-export const SelectorWrapper = styled.div`
-  position: relative;
+export const LangBar = styled.nav`
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  flex-wrap: wrap;
+  justify-content: center;
 `
 
-export const LangButton = styled.button`
-  color: var(--color-black);
-  font-size: var(--fs-body);
-  font-weight: var(--fw-semibold);
+export const LangSep = styled.span`
+  color: var(--color-grey-300);
+  font-size: var(--fs-xs);
+  user-select: none;
+`
+
+export const LangItem = styled.button`
+  font-size: var(--fs-xs);
+  font-weight: ${({ $active }) => ($active ? 'var(--fw-semibold)' : 'var(--fw-regular)')};
+  color: ${({ $active }) => ($active ? 'var(--color-black)' : 'var(--color-grey-500)')};
   letter-spacing: var(--ls-md);
   text-transform: uppercase;
-  padding: 4px 8px;
-  border-radius: var(--radius-sm);
-  transition: opacity var(--transition-fast);
-  border: 1px solid var(--color-grey-300);
+  padding: 2px 0;
+  transition: color var(--transition-fast);
 
   &:hover {
-    opacity: 0.8;
-  }
-`
-
-export const Dropdown = styled.ul`
-  position: absolute;
-  top: calc(100% + 6px);
-  right: 0;
-  background: var(--color-white);
-  color: var(--color-black);
-  border: 1px solid var(--color-grey-200);
-  border-radius: var(--radius-sm);
-  min-width: 120px;
-  z-index: var(--z-dropdown);
-  box-shadow: var(--shadow-sm);
-  overflow: hidden;
-`
-
-export const LangOption = styled.li`
-  button {
-    width: 100%;
-    text-align: left;
-    padding: 10px 14px;
-    font-size: var(--fs-md);
     color: var(--color-black);
-    font-weight: ${({ $active }) => ($active ? '700' : '400')};
-    background: ${({ $active }) => ($active ? 'var(--color-grey-100)' : 'transparent')};
-    transition: background var(--transition-fast);
-
-    &:hover {
-      background: var(--color-grey-100);
-    }
   }
 `

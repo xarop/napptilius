@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next'
 import { useCart } from '../../context/CartContext'
 import phonesApi from '../../services/api'
 import SimilarItems from '../../components/SimilarItems/SimilarItems'
+import { useFormatPrice } from '../../hooks/useFormatPrice'
 import {
   PageWrapper,
   BackLink,
@@ -50,6 +51,7 @@ function DetailPage() {
   const navigate = useNavigate()
   const { t } = useTranslation()
   const { addItem } = useCart()
+  const formatPrice = useFormatPrice()
 
   const [phone, setPhone] = useState(null)
   const [loading, setLoading] = useState(true)
@@ -200,7 +202,7 @@ function DetailPage() {
           <TitleBlock>
             <Brand>{phone.brand}</Brand>
             <PhoneName>{phone.name}</PhoneName>
-            <PriceTag>{!selectedStorage && `${t('common.from')} `}{currentPrice} EUR</PriceTag>
+            <PriceTag>{!selectedStorage && `${t('common.from')} `}{formatPrice(currentPrice)}</PriceTag>
           </TitleBlock>
 
           {/* <Divider /> */}
