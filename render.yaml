@@ -3,7 +3,7 @@ services:
     name: napptilius
     runtime: node
     plan: free
-    buildCommand: npm install && npm run build:fullstack && cd backend && npm install
+    buildCommand: npm install --include=dev && npm run build:fullstack && cd backend && npm install --omit=dev
     startCommand: node backend/src/server.js
     envVars:
       - key: NODE_ENV

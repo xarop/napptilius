@@ -86,6 +86,27 @@ The backend exposes:
 In dev, the Vite proxy forwards `/api` → `http://localhost:3001` automatically.  
 Set `VITE_API_BASE_URL=/api` in your frontend `.env` to route through the BFF.
 
+## Deployment
+
+### Render (frontend + backend) — recommended
+
+**Live:** [napptilius.onrender.com](https://napptilius.onrender.com)
+
+The repo includes `render.yaml` for one-click Blueprint deploy:
+
+1. Go to [render.com](https://render.com) → *New → Blueprint* → connect `xarop/napptilius`.
+2. Render runs `npm install && npm run build:fullstack && cd backend && npm install`.
+3. Set `API_KEY` in the Render dashboard.
+4. Express serves `dist/` (SPA) + `/api/*` routes from one process.
+
+> Free tier: ~30 s cold start after inactivity.
+
+### GitHub Pages (frontend only)
+
+**Live:** [xarop.github.io/napptilius](https://xarop.github.io/napptilius/)
+
+Push to `main` — GitHub Actions builds and deploys automatically.
+
 ## Running Tests
 
 ```bash

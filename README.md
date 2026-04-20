@@ -4,7 +4,8 @@
 
 A responsive, accessible, multilingual smartphone catalog built with React, Styled Components and React Context API.
 
-🔗 **Live demo:** [xarop.github.io/napptilius](https://xarop.github.io/napptilius/)
+🔗 **Live demo (Render – frontend + backend):** [napptilius.onrender.com](https://napptilius.onrender.com)  
+🔗 **Live demo (GitHub Pages – frontend only):** [xarop.github.io/napptilius](https://xarop.github.io/napptilius/)
 
 ---
 
@@ -25,7 +26,7 @@ Single-page application that fetches a list of smartphones from a REST API, allo
 - ⏳ **Smart loading UX** – inline HTML preloader, shimmer skeletons, slow-server notice after 6 s, image fade-in
 - 🧪 **Tested** – Vitest + React Testing Library (19 tests)
 - 🔧 **Linted** – ESLint + Prettier
-- 🚀 **Deployed** – GitHub Pages via GitHub Actions
+- 🚀 **Deployed** – [Render](https://napptilius.onrender.com) (fullstack) · [GitHub Pages](https://xarop.github.io/napptilius/) (frontend only)
 
 ## Tech Stack
 
@@ -71,16 +72,22 @@ bun run backend:install   # Install backend deps once
 bun run backend:dev       # Start on http://localhost:3001
 ```
 
-### Deploying the backend
+### Deploying
 
-GitHub Pages is static-only — the backend must be hosted on a server (e.g. [Render](https://render.com) free tier):
+**Option A – Render (frontend + backend, recommended)**
 
-1. Push the `backend/` folder to your repo.
-2. Create a new **Web Service** on Render pointing to `backend/` with start command `node src/server.js`.
-3. Set env vars `API_KEY`, `CORS_ORIGIN` (your GitHub Pages URL) on Render.
-4. Add a GitHub repo **variable** `VITE_API_BASE_URL` = `https://<your-render-service>.onrender.com` — the deploy workflow injects it automatically at build time.
+The repo includes a `render.yaml` Blueprint for one-click deploy:
 
-Leave `VITE_API_BASE_URL` unset to fall back to the upstream API (no image processing).
+1. Go to [Render](https://render.com) → *New → Blueprint* → connect `xarop/napptilius`.
+2. Render detects `render.yaml` and creates the service automatically.
+3. Set `API_KEY` in the Render dashboard (env var, sync: false).
+4. Live at **[napptilius.onrender.com](https://napptilius.onrender.com)**.
+
+> Note: free tier has a ~30 s cold start after inactivity.
+
+**Option B – GitHub Pages (frontend only)**
+
+The existing GitHub Actions workflow deploys the SPA to **[xarop.github.io/napptilius](https://xarop.github.io/napptilius/)** on every push to `main`. No backend — images load from the upstream API directly.
 
 ## Quick Start
 

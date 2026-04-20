@@ -216,10 +216,11 @@ A full Express BFF (`backend/`) was added to improve image quality and protect t
 | **Products proxy** | Upstream products fetched, deduplicated by ID, with `basePrice` corrected via parallel `/products/:id` calls. All `imageUrl` fields rewritten to `/api/image?url=…`. |
 | **Background preload** | After `/api/products` responds, all image URLs are preloaded into the cache concurrently (limit 3). |
 | **SSRF guard** | `image.router.js` validates `url` starts with `https://` before fetching. |
-| **Frontend wiring** | `api.js` reads `VITE_API_BASE_URL`; `isBFF` flag suppresses `x-api-key` header when routing through the BFF. |
+| **Frontend wiring** | `api.js` reads `VITE_API_BASE_URL`; `isBFF` flag suppresses `x-api-key` header when routing through the BFF. Automatic fallback to upstream if BFF is unreachable. |
 | **Vite proxy** | Dev server proxies `/api` → `http://localhost:3001` so no CORS issues locally. |
-| **GitHub Actions** | `deploy.yml` injects `VITE_API_BASE_URL` from a GitHub repo variable at build time — set to the deployed backend URL to enable image processing in production. |
-| **Deployment** | GitHub Pages (frontend) + Render free tier (backend). Backend env vars: `API_KEY`, `CORS_ORIGIN`, `PORT`. |
+| **Fullstack deploy** | `render.yaml` Blueprint: single Render Web Service (free tier) runs `npm run build:fullstack` then `node backend/src/server.js` — Express serves `dist/` + `/api/*` from one process. |
+| **Live URL** | [napptilius.onrender.com](https://napptilius.onrender.com) |
+| **GitHub Pages** | SPA-only deploy at [xarop.github.io/napptilius](https://xarop.github.io/napptilius/) (no image processing). |
 
 ---
 
