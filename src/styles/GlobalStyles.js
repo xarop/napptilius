@@ -168,6 +168,36 @@ const GlobalStyles = createGlobalStyle`
       top: 0;
     }
   }
+
+  /* ── Page transition ─────────────────────────────── */
+  @keyframes page-enter {
+    from {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .page-transition-wrapper {
+    animation: page-enter var(--transition-slow) ease both;
+  }
+
+  /* ── Theme transition ────────────────────────────── */
+  /* Applied temporarily during dark/light toggle so all surfaces fade smoothly. */
+  .theme-transitioning,
+  .theme-transitioning *,
+  .theme-transitioning *::before,
+  .theme-transitioning *::after {
+    transition:
+      background-color 300ms ease,
+      color 300ms ease,
+      border-color 300ms ease,
+      fill 300ms ease,
+      box-shadow 300ms ease !important;
+  }
 `
 
 export default GlobalStyles

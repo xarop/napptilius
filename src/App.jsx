@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, useLocation } from 'react-router-dom'
 import { ThemeProvider } from 'styled-components'
 import { CartProvider } from './context/CartContext'
 import { PhoneProvider } from './context/PhoneContext'
@@ -14,6 +14,8 @@ import OrderConfirmationPage from './pages/OrderConfirmationPage/OrderConfirmati
 import NotFound from './components/NotFound/NotFound'
 
 function App() {
+  const location = useLocation()
+
   return (
     <ThemeModeProvider>
       <ThemeProvider theme={theme}>
@@ -24,13 +26,15 @@ function App() {
             Skip to main content
           </a>
           <Header />
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/phones/:id" element={<DetailPage />} />
-            <Route path="/cart" element={<CartPage />} />
-            <Route path="/order-confirmation" element={<OrderConfirmationPage />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
+          <div key={location.key} className="page-transition-wrapper">
+            <Routes>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/phones/:id" element={<DetailPage />} />
+              <Route path="/cart" element={<CartPage />} />
+              <Route path="/order-confirmation" element={<OrderConfirmationPage />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </div>
           <Footer />
         </PhoneProvider>
       </CartProvider>

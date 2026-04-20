@@ -15,7 +15,13 @@ export function ThemeModeProvider({ children }) {
     localStorage.setItem('theme', isDark ? 'dark' : 'light')
   }, [isDark])
 
-  const toggleTheme = () => setIsDark(prev => !prev)
+  const toggleTheme = () => {
+    document.documentElement.classList.add('theme-transitioning')
+    setIsDark(prev => !prev)
+    setTimeout(() => {
+      document.documentElement.classList.remove('theme-transitioning')
+    }, 350)
+  }
 
   return (
     <ThemeContext.Provider value={{ isDark, toggleTheme }}>

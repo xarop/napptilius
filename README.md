@@ -19,7 +19,8 @@ Single-page application that fetches a list of smartphones from a REST API, allo
 - 🔍 **Detail page** with specs table, color & storage selectors (first color pre-selected), similar items strip and skeleton loading layout
 - 🛒 **Cart page** with item management, quantity controls and responsive footer
 - ✅ **Order confirmation** page after checkout
-- 🌓 **Dark mode** toggle
+- 🌓 **Dark mode** toggle with smooth theme transition (all surfaces fade in 300 ms)
+- ✨ **Page transitions** – subtle fade-in + slide-up animation on every route change
 - 🌍 **Multilingual** – English / Spanish / Catalan
 - ♿ **Accessible** – ARIA roles, skip navigation, keyboard support
 - 📱 **Responsive** – mobile-first layout
