@@ -63,7 +63,7 @@ Authentication via `x-api-key` header – set `VITE_API_KEY` in `.env`.
 A Node.js / Express backend lives in `backend/` and provides:
 
 - **Image processing** – removes white backgrounds (BFS flood-fill), crops, resizes to 400 px height and converts to WebP (quality 85) via Sharp.
-- **API proxy** – forwards `/api/products` to the upstream, hides the API key, deduplicates responses, fixes inconsistent prices, rewrites image URLs to `/api/image?url=...`.
+- **API proxy** – forwards `/api/products` to the upstream, hides the API key, deduplicates responses, fixes inconsistent prices, rewrites image URLs to `/api/image?url=...`, and **limits the response to the first N products** (default 20, configurable via `PRODUCTS_DEFAULT_LIMIT`).
 - **LRU image cache** – 50 entries; processed images are served with `Cache-Control: immutable`.
 
 When `VITE_API_BASE_URL` is set, the frontend routes all requests through the BFF instead of the upstream directly.

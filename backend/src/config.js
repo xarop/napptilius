@@ -14,6 +14,7 @@ const config = {
         process.env.UPSTREAM_API_URL ?? 'https://prueba-tecnica-api-tienda-moviles.onrender.com',
     apiKey: process.env.API_KEY ?? '',
     corsOrigin: rawOrigins.split(',').map(o => o.trim()),
+    productsDefaultLimit: Number(process.env.PRODUCTS_DEFAULT_LIMIT ?? 20),
 }
 
 export default config

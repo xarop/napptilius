@@ -58,6 +58,7 @@ The app will be available at **http://localhost:5173**
 | `API_KEY` | — | API key forwarded to the upstream. |
 | `UPSTREAM_API_URL` | upstream URL | Base URL of the upstream REST API. |
 | `CORS_ORIGIN` | `http://localhost:5173` | Comma-separated allowed origins. |
+| `PRODUCTS_DEFAULT_LIMIT` | `20` | Max products returned by `GET /api/products`. Set to `0` for no limit. |
 
 ## Production Build
 

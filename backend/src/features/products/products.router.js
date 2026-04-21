@@ -91,16 +91,21 @@ router.get('/', async (req, res, next) => {
                 )
                 : deduped
 
-        if (upstream.ok && Array.isArray(data)) {
-            setCachedProducts(cacheKey, data)
+        // Apply limit/offset after deduplication and price fixing (upstream ignores these params)
+        const pageLimit = limit !== undefined ? Number(limit) : config.productsDefaultLimit
+        const pageOffset = offset !== undefined ? Number(offset) : 0
+        const paged = Array.isArray(data) ? data.slice(pageOffset, pageOffset + pageLimit) : data
+
+        if (upstream.ok && Array.isArray(paged)) {
+            setCachedProducts(cacheKey, paged)
         }
 
-        res.status(upstream.status).json(data)
+        res.status(upstream.status).json(paged)
 
         // Preload images in the background — they'll be warm when the browser requests them
-        if (Array.isArray(data)) {
+        if (Array.isArray(paged)) {
             // Extract the original URLs from our proxy URLs for preloading
-            const originalUrls = data
+            const originalUrls = paged
                 .map(p => {
                     if (typeof p.imageUrl !== 'string') return null
                     try {
