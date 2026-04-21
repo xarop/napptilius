@@ -1,4 +1,5 @@
 import { Routes, Route, useLocation } from 'react-router-dom'
+import { useEffect } from 'react'
 import { ThemeProvider } from 'styled-components'
 import { CartProvider } from './context/CartContext'
 import { PhoneProvider } from './context/PhoneContext'
@@ -15,6 +16,10 @@ import NotFound from './components/NotFound/NotFound'
 
 function App() {
   const location = useLocation()
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [location.pathname])
 
   return (
     <ThemeModeProvider>
