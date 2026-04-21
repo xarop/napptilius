@@ -8,7 +8,13 @@
   - [Table of Contents](#table-of-contents)
   - [Installation](#installation)
   - [Environment Variables](#environment-variables)
+    - [Frontend (`.env`)](#frontend-env)
+    - [Backend (`backend/.env`)](#backend-backendenv)
   - [Production Build](#production-build)
+  - [Backend (optional)](#backend-optional)
+  - [Deployment](#deployment)
+    - [Render (frontend + backend) — recommended](#render-frontend--backend--recommended)
+    - [GitHub Pages (frontend only)](#github-pages-frontend-only)
   - [Running Tests](#running-tests)
   - [Linting \& Formatting](#linting--formatting)
 
