@@ -94,7 +94,7 @@ Si tienes dudas o necesitas aclaraciones, no dudes en contactarnos a través del
 
 ### Vista Listado de Teléfonos
 - [x] Grid con los 20 teléfonos de la API — imagen, nombre, marca y precio base
-- [x] Buscador en tiempo real por nombre/marca (con debounce 300 ms)
+- [x] Buscador en tiempo real por nombre/marca — filtrado por API con debounce 300 ms
 - [x] Indicador del número de resultados
 - [x] Navegación con icono/enlace al home
 - [x] Navegación con icono + contador del carrito

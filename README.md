@@ -25,7 +25,7 @@ Single-page application that fetches a list of smartphones from a REST API, allo
 - ♿ **Accessible** – ARIA roles, skip navigation, keyboard support
 - 📱 **Responsive** – mobile-first layout
 - ⏳ **Smart loading UX** – inline HTML preloader, shimmer skeletons, slow-server notice after 6 s, image fade-in
-- 🧪 **Tested** – Vitest + React Testing Library (19 tests)
+- 🧪 **Tested** – Vitest + React Testing Library (27 tests)
 - 🔧 **Linted** – ESLint + Prettier
 - 🚀 **Deployed** – [Render](https://napptilius.onrender.com) (fullstack) · [GitHub Pages](https://xarop.github.io/napptilius/) (frontend only)
 
@@ -56,7 +56,7 @@ Base URL: `https://prueba-tecnica-api-tienda-moviles.onrender.com`
 
 Authentication via `x-api-key` header – set `VITE_API_KEY` in `.env`.
 
-> **Note on search filtering:** The challenge spec says *"use API filtering"*, but the upstream API does not expose any search or filter parameter on `GET /products` — it always returns the full catalogue. Filtering is therefore performed client-side in `PhoneContext` using a debounced `useMemo` over the cached product list. This is the correct and expected approach given the API constraints.
+> **Search filtering:** The challenge spec requires *"API filtering"*. The BFF backend forwards `?search=<query>` to the upstream API (`GET /products?search=…`), and the frontend passes the debounced query (≥ 2 chars) directly to the API endpoint instead of filtering client-side.
 
 ## Backend BFF (optional)
 

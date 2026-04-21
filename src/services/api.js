@@ -17,6 +17,12 @@ const API_KEY = isBFF ? null : UPSTREAM_KEY
 const CACHE_TTL = 60 * 60 * 1000 // 1 hour in ms
 const cache = new Map()
 
+export function _resetCache() {
+  cache.clear()
+}
+
+export const _http = { fetch: (...args) => fetch(...args) }
+
 function getCached(key) {
   const entry = cache.get(key)
   if (!entry) return null
@@ -41,11 +47,11 @@ async function request(endpoint) {
 
   let response
   try {
-    response = await fetch(`${BASE_URL}${endpoint}`, { headers })
+    response = await _http.fetch(`${BASE_URL}${endpoint}`, { headers })
   } catch {
     // BFF unreachable – fall back to upstream
     if (isBFF) {
-      response = await fetch(`${UPSTREAM_URL}${endpoint}`, {
+      response = await _http.fetch(`${UPSTREAM_URL}${endpoint}`, {
         headers: { 'Content-Type': 'application/json', 'x-api-key': UPSTREAM_KEY },
       })
     } else {
@@ -56,7 +62,7 @@ async function request(endpoint) {
   if (!response.ok) {
     // BFF returned an error – fall back to upstream
     if (isBFF) {
-      const fallback = await fetch(`${UPSTREAM_URL}${endpoint}`, {
+      const fallback = await _http.fetch(`${UPSTREAM_URL}${endpoint}`, {
         headers: { 'Content-Type': 'application/json', 'x-api-key': UPSTREAM_KEY },
       })
       if (!fallback.ok) throw new Error(`API error: ${fallback.status} ${fallback.statusText}`)
@@ -72,15 +78,20 @@ async function request(endpoint) {
   return data
 }
 
+const dedup = data => {
+  const seen = new Set()
+  return data.filter(p => {
+    if (seen.has(p.id)) return false
+    seen.add(p.id)
+    return true
+  })
+}
+
 export const phonesApi = {
-  getAll: () => request('/products').then(data => {
-    const seen = new Set()
-    return data.filter(p => {
-      if (seen.has(p.id)) return false
-      seen.add(p.id)
-      return true
-    })
-  }),
+  getAll: (search) => {
+    const endpoint = search ? `/products?search=${encodeURIComponent(search)}` : '/products'
+    return request(endpoint).then(dedup)
+  },
   getById: id => request(`/products/${id}`),
 }
 
