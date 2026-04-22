@@ -1,9 +1,20 @@
+import { useEffect, useState } from 'react'
 import ThemeToggle from '../ThemeToggle/ThemeToggle'
 import LanguageSelector from '../LanguageSelector/LanguageSelector'
 import { StyledFooter, FooterLeft, FooterRight, BackToTop } from './Footer.styled'
 
 function Footer() {
   const year = new Date().getFullYear()
+  const [visits, setVisits] = useState(null)
+
+  useEffect(() => {
+    const base = import.meta.env.VITE_API_BASE_URL
+    if (!base) return
+    fetch(`${base.replace(/\/api$/, '')}/api/visits`)
+      .then(r => r.ok ? r.json() : null)
+      .then(data => data && setVisits(data.unique))
+      .catch(() => {})
+  }, [])
 
   return (
     <StyledFooter aria-label="Site footer">
@@ -20,6 +31,19 @@ function Footer() {
         <a href="https://github.com/xarop/napptilius/" target="_blank" rel="noopener noreferrer">
           GitHub
         </a>
+        {visits !== null && (
+          <>
+            <span aria-hidden="true">·</span>
+            <a
+              href={`${import.meta.env.VITE_API_BASE_URL?.replace(/\/api$/, '')}/api/visits`}
+              target="_blank"
+              rel="noopener noreferrer"
+              title={`${visits} unique visitor${visits !== 1 ? 's' : ''}`}
+            >
+              {visits} 👁
+            </a>
+          </>
+        )}
       </FooterLeft>
 
       <BackToTop

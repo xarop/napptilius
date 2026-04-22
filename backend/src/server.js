@@ -6,6 +6,7 @@ import { dirname, join } from 'path'
 import config from './config.js'
 import productsRouter from './features/products/products.router.js'
 import imageRouter from './features/image/image.router.js'
+import { visitsMiddleware, getVisits } from './features/visits/visits.js'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 
@@ -13,9 +14,11 @@ const app = express()
 
 app.use(cors({ origin: config.corsOrigin }))
 app.use(express.json())
+app.use(visitsMiddleware)
 
 // ── API routes ─────────────────────────────────────────────────────────────
 app.get('/health', (_req, res) => res.json({ status: 'ok' }))
+app.get('/api/visits', (_req, res) => res.json(getVisits()))
 app.use('/api/products', productsRouter)
 app.use('/api/image', imageRouter)
 
