@@ -11,10 +11,6 @@
     {
       "name": "xarop.com",
       "url": "https://xarop.com"
-    },
-    {
-      "name": "Claude (GitHub Copilot / Anthropic)",
-      "url": "https://claude.ai"
     }
   ],
   "type": "module",

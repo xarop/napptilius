@@ -151,6 +151,25 @@ src/
 
 ---
 
+## Design Decisions
+
+**Why React (SPA) and not Next.js?**
+The challenge spec has no SEO requirements and the data is fetched client-side from a single API. A SPA with Vite is lighter, faster to iterate on, and avoids SSR complexity that isn't justified by the scope. Next.js would have been the right call if SEO or server-rendered pages were required.
+
+**Why JavaScript and not TypeScript?**
+A deliberate trade-off: for a solo, time-boxed project the overhead of typing every API response and component prop adds friction without adding safety beyond what tests already provide. In a team codebase or shared library, TypeScript would be the default.
+
+**Why a BFF instead of calling the upstream API directly?**
+Three concrete reasons: (1) the API key must not be exposed to the browser, (2) the upstream API returns inconsistent prices and duplicate products that need normalisation, (3) images have white backgrounds and no consistent format — the BFF strips backgrounds, crops, resizes and converts to WebP so the frontend receives clean assets. All three are production concerns, not over-engineering.
+
+**Why Styled Components and not Tailwind or CSS Modules?**
+Component-scoped styles, dynamic theming via CSS custom properties and dark mode without extra config. Tailwind is a valid alternative — the choice here was familiarity and speed for a time-boxed project.
+
+**Why Vitest and not Jest?**
+Vitest shares Jest's API and runs natively inside Vite's pipeline. No separate babel config, no jsdom setup file differences. For a Vite project, Jest is an unnecessary dependency.
+
+---
+
 ## License
 
 MIT
@@ -159,7 +178,4 @@ MIT
 
 ## Credits
 
-| Role | Name |
-|---|---|
-| Developer | [xarop.com](https://xarop.com) |
-| AI Developer | Claude (GitHub Copilot · Anthropic) |
+[xarop.com](https://xarop.com)
